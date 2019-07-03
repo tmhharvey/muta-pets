@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const session = require("express-session");
 const path = require("path");
-require("dotenv").config();
 
 app.use(
   session({
@@ -17,7 +16,7 @@ app.use(
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "seed-financial/build")));
+app.use(express.static(path.join(__dirname, "mern-template/build")));
 
 const corsOptions = {
   origin: `http://localhost:3000`,
@@ -26,21 +25,15 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// ROUTING;
-const companyAuthController = require("./controllers/api/company/register");
-app.use("/company-auth", companyAuthController);
+// ROUTING
+// const authController = require("./controllers/authController");
+// app.use("/auth", authController);
 
-const lenderAuthController = require("./controllers/api/lender/register");
-app.use("/lender-auth", lenderAuthController);
+// const dataController = require("./controllers/dataController");
+// app.use("/data", dataController);
 
-const adminController = require("./controllers/api/adminController");
-app.use("/admin", adminController);
-
-const companyController = require("./controllers/api/company/companyRoutes");
-app.use("/company", companyController);
-
-const lenderController = require("./controllers/api/lender/lenderRoutes");
-app.use("/lender", lenderController);
+// const userController = require("./controllers/userController");
+// app.use("/user", userController);
 
 const port = process.env.PORT || 9000;
 
