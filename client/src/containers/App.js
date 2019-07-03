@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.scss";
-import Layout from "./Layout/Layout.js";
 import {
   Collapse,
   Navbar,
@@ -22,9 +21,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Layout>
-            <h1>Your MERN Template with SaSS is working!</h1>
-          </Layout>
+          <h1>Your MERN Template with SaSS is working!</h1>
         </div>
       </BrowserRouter>
     );
