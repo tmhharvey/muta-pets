@@ -2,13 +2,6 @@ const mongoose = require("mongoose");
 // DB Config
 const db = require("../config/keys").mongoURI;
 
-// // Connect to MongoDB
-// mongoose.connect(db, {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-//   useFindAndModify: false
-// });
-
 mongoose.connect(process.env.MONGODB_URI || db, {
   useNewUrlParser: true,
   useCreateIndex: true,

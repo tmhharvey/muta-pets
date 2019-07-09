@@ -1,0 +1,13 @@
+@import "../assets/sass/base/base";
+@import "../assets/sass/base/typography";
+
+.mainDashboard {
+  border: 1px solid #ccc;
+  height: 100vh;
+}
+
+.mainContent {
+  border: solid 1px lightblue;
+  height: 65%;
+  padding: 20rem;
+}

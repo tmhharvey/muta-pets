@@ -1,4 +1,4 @@
 module.exports = {
   mongoURI:
-    "mongodb://larothion:poonage123@ds153096.mlab.com:53096/seed-financial-db"
+    "mongodb+srv://tmhharvey:Jerrythecat16!@mutapets-h8n6m.mongodb.net/test?retryWrites=true&w=majority"
 };
