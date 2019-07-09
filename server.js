@@ -29,6 +29,9 @@ app.use(cors(corsOptions));
 const authController = require("./controllers/api/register");
 app.use("/auth", authController);
 
+const userController = require("./controllers/api/userController");
+app.use("/user", userController);
+
 // const dataController = require("./controllers/dataController");
 // app.use("/data", dataController);
 

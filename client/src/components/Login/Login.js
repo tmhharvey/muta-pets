@@ -19,7 +19,7 @@ import axios from "axios";
 
 class Login extends Component {
   state = {
-    email: "tmhharvey@gmail.com",
+    emailOrUserName: "tmhharvey@gmail.com",
     password: "password"
   };
 
@@ -28,25 +28,26 @@ class Login extends Component {
     const value = target.value;
     const name = target.name;
 
-    console.log(value);
-    console.log(name);
-
-    this.setState({
-      [name]: value
-    });
+    this.setState(
+      {
+        [name]: value
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   };
 
-  loginHandler = async (e, email, password) => {
+  loginHandler = async (e, emailOrUserName, password) => {
     e.preventDefault();
     console.log("logging in...");
-    console.log(this.props.context);
     try {
       console.log("we're about to post login to the server");
 
       const loginResponse = await axios.post(
         process.env.REACT_APP_BACKEND + "auth/login",
         {
-          email: email,
+          emailOrUserName: emailOrUserName,
           password: password,
           userType: "U"
         }
@@ -57,15 +58,15 @@ class Login extends Component {
       // If a successful response...
       if (loginResponse.data.status === 200) {
         console.log("got login data! Response is...");
-        console.log(loginResponse.data);
 
         this.setState(
           {
             userId: loginResponse.data.userId,
-            userType: loginResponse.data.userType
+            userType: loginResponse.data.userType,
+            sessionData: loginResponse.data.session
           },
           () => {
-            this.props.context.successfulLogin();
+            this.props.context.successfulLogin(this.state.sessionData);
           }
         );
       } else {
@@ -94,7 +95,9 @@ class Login extends Component {
                     <CardBody>
                       <Form>
                         <h1>Login</h1>
-                        <p className="text-muted">Sign In to your account</p>
+                        <p className="text-muted">
+                          Sign In to your account with your Email or Username
+                        </p>
                         <InputGroup className="mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
@@ -105,8 +108,8 @@ class Login extends Component {
                             type="text"
                             placeholder="Email"
                             autoComplete="email"
-                            name="email"
-                            value={this.state.email}
+                            name="emailOrUserName"
+                            value={this.state.emailOrUserName}
                             onChange={this.handleInputChange}
                           />
                         </InputGroup>
@@ -133,7 +136,7 @@ class Login extends Component {
                               onClick={e => {
                                 this.loginHandler(
                                   e,
-                                  this.state.email,
+                                  this.state.emailOrUserName,
                                   this.state.password
                                 );
                               }}

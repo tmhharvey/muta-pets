@@ -19,6 +19,7 @@ import { withRouter } from "react-router-dom";
 
 class Register extends Component {
   state = {
+    userName: "",
     email: "",
     password: "",
     passwordValidate: ""
@@ -29,12 +30,17 @@ class Register extends Component {
     const value = target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
+    this.setState(
+      {
+        [name]: value
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   };
 
-  registerHandler = async (e, email, password) => {
+  registerHandler = async (e, email, password, userName) => {
     e.preventDefault();
     console.log("we're about to post Register to the server");
 
@@ -43,13 +49,17 @@ class Register extends Component {
 
       const registerResponse = await axios.post(
         process.env.REACT_APP_BACKEND + "auth/register",
-        { email: email, password: password }
+        {
+          email: email,
+          password: password,
+          userName: userName
+        }
       );
       console.log("Register Response Data....." + registerResponse);
 
       // If a successful response...
 
-      if (registerResponse.status === 200) {
+      if (registerResponse.data.status === 200) {
         console.log("Sucessful register! Response is...");
         console.log(registerResponse.data);
         console.log(registerResponse.data.userId);
@@ -66,8 +76,7 @@ class Register extends Component {
             userType: newUserType
           },
           () => {
-            localStorage.setItem("authenticated", true);
-            this.props.history.push("/home");
+            this.props.context.successfulLogin();
           }
         );
       } else {
@@ -89,6 +98,18 @@ class Register extends Component {
                   <Form>
                     <h1>Register</h1>
                     <p className="text-muted">Create your account</p>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText />
+                      </InputGroupAddon>
+                      <Input
+                        type="text"
+                        placeholder="Username"
+                        autoComplete="username"
+                        name="userName"
+                        onChange={this.handleInputChange}
+                      />
+                    </InputGroup>
 
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
@@ -138,7 +159,8 @@ class Register extends Component {
                           this.registerHandler(
                             e,
                             this.state.email,
-                            this.state.password
+                            this.state.password,
+                            this.state.userName
                           );
                         }}
                       >

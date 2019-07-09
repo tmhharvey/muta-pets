@@ -9,7 +9,6 @@ import {
   Switch
 } from "react-router-dom";
 
-import Register from "./components/Register/Register";
 import Loadable from "react-loadable";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -18,10 +17,6 @@ import AuthContextProvider, {
 } from "./Context/auth/AuthContextProvider";
 import withAuthContext from "./Context/auth/Context_HOC";
 
-import UserContextProvider, {
-  UserInfoAppContext
-} from "./Context/userInfo/UserContextProvider";
-import withUserInfoContext from "./Context/auth/Context_HOC";
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse" />
@@ -38,9 +33,10 @@ const MainDashboardPage = Loadable({
   loading
 });
 
-const RegisterPage = () => {
-  return <Register />;
-};
+const Register = Loadable({
+  loader: () => import("./components/Register/Register"),
+  loading
+});
 
 class App extends Component {
   render() {
@@ -50,17 +46,19 @@ class App extends Component {
         <Col sm="10">
           <BrowserRouter>
             <AuthContextProvider>
-              <UserContextProvider>
-                <Switch>
-                  <Route exact path="/" component={withAuthContext(Login)} />
-                  <ProtectedRoute
-                    exact
-                    path="/home"
-                    component={withUserInfoContext(MainDashboardPage)}
-                  />
-                  <Route exact path="/register" component={RegisterPage} />
-                </Switch>
-              </UserContextProvider>
+              <Switch>
+                <Route exact path="/" component={withAuthContext(Login)} />
+                <ProtectedRoute
+                  exact
+                  path="/home"
+                  component={withAuthContext(MainDashboardPage)}
+                />
+                <Route
+                  exact
+                  path="/register"
+                  component={withAuthContext(Register)}
+                />
+              </Switch>
             </AuthContextProvider>
           </BrowserRouter>
         </Col>

@@ -10,11 +10,13 @@ router.post("/register", async (req, res) => {
   const password = req.body.password;
   const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
   const userDbEntry = {};
+  userDbEntry.userName = req.body.userName;
   userDbEntry.email = req.body.email;
   userDbEntry.password = hashedPassword;
   userDbEntry.userType = "U";
 
-  console.log(password);
+  console.log(userDbEntry.password);
+  console.log(userDbEntry.userName);
   console.log(userDbEntry.email);
   console.log(userDbEntry.userType);
 
@@ -23,16 +25,22 @@ router.post("/register", async (req, res) => {
       email: userDbEntry.email
     });
 
-    console.log("taken email or not: " + emailTaken);
+    const userNameTaken = await User.findOne({
+      userName: userDbEntry.userName
+    });
 
-    if (!emailTaken) {
-      if (req.body.email && req.body.password) {
+    console.log("Is the user EMAIL taken: " + emailTaken ? "Yes" : "No");
+    console.log("Is the user NAME taken: " + userNameTaken ? "Yes" : "No");
+
+    if (!emailTaken && !userNameTaken) {
+      if (req.body.email && req.body.password && req.body.userName) {
         console.log("====");
         console.log(userDbEntry);
         const user = await User.create(userDbEntry);
         console.log("user created: " + user);
 
         req.session.email = user.email;
+        req.session.userName = user.userName;
         req.session.logged = true;
         req.session.userId = user._id;
 
@@ -69,28 +77,43 @@ router.post("/register", async (req, res) => {
 
 //Login Example
 router.post("/login", async (req, res) => {
-  console.log(req.body.email);
+  console.log(req.body.emailOrUserName);
   try {
-    const foundUser = await User.findOne({ email: req.body.email });
-    console.log(`FOUND USER: ${foundUser}`);
-    //console.log("request sent:" + req.body);
+    const foundUserEmail = await User.findOne({
+      email: req.body.emailOrUserName
+    });
+    console.log(`FOUND EMAIL: ${foundUserEmail}`);
 
-    if (foundUser) {
+    const foundUserName = await User.findOne({
+      userName: req.body.emailOrUserName
+    });
+    console.log(`FOUND USER: ${foundUserName}`);
+
+    if (foundUserEmail || foundUserName) {
+      var foundUser = foundUserEmail ? foundUserEmail : foundUserName;
       console.log("found user is true");
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         console.log("PASSWORD CORRECT.");
         req.session.message = "";
-        req.session.email = foundUser.email;
+        req.session.email = foundUserEmail
+          ? foundUserEmail.email
+          : foundUserName.email;
+        req.session.userName = foundUserEmail
+          ? foundUserEmail.userName
+          : foundUserName.userName;
         req.session.logged = true;
-        req.session.userId = foundUser._id;
+        req.session.userId = foundUserEmail
+          ? foundUserEmail._id
+          : foundUserName._id;
+        req.session.userType = foundUserEmail
+          ? foundUserEmail.userType
+          : foundUserName.userType;
         console.log(`STARTED SESSION: ${req.session}`);
         res.json({
           status: 200,
-          data: {
-            session: req.session,
-            userId: foundUser._id,
-            userType: foundUser.userType
-          }
+          session: req.session,
+          userId: req.session.userId,
+          userType: req.session.userType
         });
       } else {
         req.session.message = "USERNAME/PASS INCORRECT";

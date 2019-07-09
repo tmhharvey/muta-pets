@@ -14,8 +14,7 @@ class AuthContextProvider extends Component {
     }
 
     this.state = {
-      authenticated,
-      userName: "Taylor"
+      authenticated
     };
 
     this.lastActiveTime = new Date().getTime();
@@ -67,13 +66,14 @@ class AuthContextProvider extends Component {
     );
   };
 
-  successfulLogin = () => {
+  successfulLogin = sessionData => {
     localStorage.setItem("authenticated", true);
     const homePathName = "/home";
 
     this.setState(
       {
-        authenticated: true
+        authenticated: true,
+        session: sessionData
       },
       () => {
         this.props.history.push(homePathName);
@@ -82,7 +82,6 @@ class AuthContextProvider extends Component {
   };
 
   render() {
-    console.log("AUTHENTICATED WOO: " + this.state.authenticated);
     const { children } = this.props;
     return (
       <AuthAppContext.Provider
@@ -91,8 +90,8 @@ class AuthContextProvider extends Component {
           logoutHandler: () => {
             this.logoutHandler();
           },
-          successfulLogin: () => {
-            this.successfulLogin();
+          successfulLogin: userName => {
+            this.successfulLogin(userName);
           }
         }}
       >
