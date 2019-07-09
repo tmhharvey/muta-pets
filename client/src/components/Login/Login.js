@@ -39,6 +39,7 @@ class Login extends Component {
   loginHandler = async (e, email, password) => {
     e.preventDefault();
     console.log("logging in...");
+    console.log(this.props.context);
     try {
       console.log("we're about to post login to the server");
 

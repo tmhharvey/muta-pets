@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-export const AppContext = React.createContext();
+export const AuthAppContext = React.createContext();
 
 const SESSIONTIMEOUT = 3600000; //1 hour
 
-class ContextProvider extends Component {
+class AuthContextProvider extends Component {
   constructor(props) {
     super(props);
     let authenticated;
@@ -14,7 +14,8 @@ class ContextProvider extends Component {
     }
 
     this.state = {
-      authenticated
+      authenticated,
+      userName: "Taylor"
     };
 
     this.lastActiveTime = new Date().getTime();
@@ -84,7 +85,7 @@ class ContextProvider extends Component {
     console.log("AUTHENTICATED WOO: " + this.state.authenticated);
     const { children } = this.props;
     return (
-      <AppContext.Provider
+      <AuthAppContext.Provider
         value={{
           state: { ...this.state },
           logoutHandler: () => {
@@ -96,9 +97,9 @@ class ContextProvider extends Component {
         }}
       >
         {children}
-      </AppContext.Provider>
+      </AuthAppContext.Provider>
     );
   }
 }
 
-export default withRouter(ContextProvider);
+export default withRouter(AuthContextProvider);

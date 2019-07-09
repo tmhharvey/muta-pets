@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import withContext from "./Context/Context_HOC";
+import withAuthContext from "./Context/auth/Context_HOC";
 
 const ProtectedRoute = ({
   context: {
@@ -19,7 +19,7 @@ const ProtectedRoute = ({
   );
 };
 
-export default withContext(ProtectedRoute);
+export default withAuthContext(ProtectedRoute);
 
 // import React from "react";
 // import { Route, Redirect } from "react-router-dom";

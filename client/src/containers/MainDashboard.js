@@ -10,7 +10,7 @@ class MainDashboard extends Component {
   render() {
     return (
       <div className="mainDashboard">
-        <DefaultNav />
+        <DefaultNav userName={this.props.context.state.userName} />
         <Row className="mainContent text-center">
           <Col sm="12">Here is the main content</Col>
         </Row>

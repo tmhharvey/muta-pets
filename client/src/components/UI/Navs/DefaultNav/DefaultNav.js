@@ -9,7 +9,7 @@ class DefaultNav extends Component {
       <Row className="mainNav">
         <Col sm="2 text-center">Map</Col>
         <Col sm="8 text-center">middle nav content </Col>
-        <Col sm="2 text-center">Profile</Col>
+        <Col sm="2 text-center">Welcome, {this.props.userName}!</Col>
       </Row>
     );
   }

@@ -8,13 +8,20 @@ import {
   withRouter,
   Switch
 } from "react-router-dom";
-import MainDashboard from "./containers/MainDashboard";
 
 import Register from "./components/Register/Register";
 import Loadable from "react-loadable";
-import ContextProvider, { AppContext } from "./Context/ContextProvider";
 import ProtectedRoute from "./ProtectedRoute";
-import withContext from "./Context/Context_HOC";
+
+import AuthContextProvider, {
+  AuthAppContext
+} from "./Context/auth/AuthContextProvider";
+import withAuthContext from "./Context/auth/Context_HOC";
+
+import UserContextProvider, {
+  UserInfoAppContext
+} from "./Context/userInfo/UserContextProvider";
+import withUserInfoContext from "./Context/auth/Context_HOC";
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse" />
@@ -26,13 +33,10 @@ const Login = Loadable({
   loading
 });
 
-const MainDashboardPage = () => {
-  return <MainDashboard />;
-};
-
-const LoginPage = () => {
-  return <Login />;
-};
+const MainDashboardPage = Loadable({
+  loader: () => import("./containers/MainDashboard"),
+  loading
+});
 
 const RegisterPage = () => {
   return <Register />;
@@ -45,17 +49,19 @@ class App extends Component {
         <Col sm="1" />
         <Col sm="10">
           <BrowserRouter>
-            <ContextProvider>
-              <Switch>
-                <Route exact path="/" component={withContext(Login)} />
-                <ProtectedRoute
-                  exact
-                  path="/home"
-                  component={MainDashboardPage}
-                />
-                <Route exact path="/register" component={RegisterPage} />
-              </Switch>
-            </ContextProvider>
+            <AuthContextProvider>
+              <UserContextProvider>
+                <Switch>
+                  <Route exact path="/" component={withAuthContext(Login)} />
+                  <ProtectedRoute
+                    exact
+                    path="/home"
+                    component={withUserInfoContext(MainDashboardPage)}
+                  />
+                  <Route exact path="/register" component={RegisterPage} />
+                </Switch>
+              </UserContextProvider>
+            </AuthContextProvider>
           </BrowserRouter>
         </Col>
         <Col sm="1" />
