@@ -1,0 +1,52 @@
+@import "../../../assets/sass/abstract/variables.scss";
+
+h2,
+h3 {
+  color: #fff;
+}
+
+h1 {
+  color: $color-tertiary;
+}
+
+.selectedModalPetCard {
+  height: 40rem;
+  width: 32rem;
+  position: relative;
+  border: 3px solid $color-tertiary;
+  margin: 0 auto;
+  margin-top: 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(darken(#fff, 35%), 0.95),
+    rgba(#cc744e, 0.95)
+  );
+  &__petInfo {
+    font-size: 2rem;
+    margin-top: 5rem;
+  }
+
+  &__selectPetBtn {
+    font-size: 2rem;
+    border-radius: 1rem;
+    margin-top: 3.5rem;
+  }
+
+  img {
+    height: 100%;
+    width: 90%;
+    position: relative;
+    border-radius: 2rem;
+    z-index: 1;
+  }
+
+  &:hover {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(lighten(#fff, 35%), 0.95),
+      rgba(lighten(#cc744e, 2%), 0.95)
+    );
+  }
+}

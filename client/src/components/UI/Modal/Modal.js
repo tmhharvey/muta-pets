@@ -4,6 +4,7 @@ import Backdrop from "../Backdrop/Backdrop";
 
 class Modal extends Component {
   render() {
+    console.log(this.props.chosenImage);
     return (
       <>
         <Backdrop show={this.props.show} topStyle={"0%"} leftStyle={"-20%"} />
@@ -13,7 +14,8 @@ class Modal extends Component {
             transform: this.props.show
               ? "translate(-50%, -50%)"
               : "translateY(-250vh)",
-            opacity: this.props.show ? "1" : "0"
+            opacity: this.props.show ? "1" : "0",
+            backgroundImage: `url(${this.props.chosenImage})`
           }}
         >
           {/* <p className="Modal__close">X</p> */}

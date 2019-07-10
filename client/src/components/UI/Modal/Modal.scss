@@ -3,12 +3,11 @@
 
 .Modal {
   z-index: 500;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(black, 0.7),
-      rgba($color-primary-dark, 0.8)
-    ),
-    url("../../../assets/img/introImage.jpg");
+  background: linear-gradient(
+    to right bottom,
+    rgba(black, 0.7),
+    rgba(black, 0.8)
+  );
   background-size: cover;
   border-radius: $default-border-radius;
   border: 2px outset $color-black;

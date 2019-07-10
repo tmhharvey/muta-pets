@@ -1,6 +1,6 @@
-@import "../assets/sass/base/base";
-@import "../assets/sass/base/typography";
-@import "../assets/sass/abstract/variables.scss";
+@import "../../assets/sass/base/base";
+@import "../../assets/sass/base/typography";
+@import "../../assets/sass/abstract/variables.scss";
 
 .mainDashboard {
   border: 1px solid #ccc;
@@ -48,13 +48,4 @@
       rgba(lighten(#cc744e, 2%), 0.95)
     );
   }
-}
-
-h2,
-h3 {
-  color: #fff;
-}
-
-h1 {
-  color: $color-tertiary;
 }

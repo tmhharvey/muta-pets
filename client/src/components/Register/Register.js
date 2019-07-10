@@ -19,10 +19,10 @@ import { withRouter } from "react-router-dom";
 
 class Register extends Component {
   state = {
-    userName: "",
-    email: "",
-    password: "",
-    passwordValidate: ""
+    userName: "Larothion",
+    email: "tmhharvey@gmail.com",
+    password: "password",
+    passwordValidate: "password"
   };
 
   handleInputChange = event => {
@@ -107,6 +107,7 @@ class Register extends Component {
                         placeholder="Username"
                         autoComplete="username"
                         name="userName"
+                        value={this.state.userName}
                         onChange={this.handleInputChange}
                       />
                     </InputGroup>
@@ -120,6 +121,7 @@ class Register extends Component {
                         placeholder="Email"
                         autoComplete="email"
                         name="email"
+                        value={this.state.email}
                         onChange={this.handleInputChange}
                       />
                     </InputGroup>
@@ -134,6 +136,7 @@ class Register extends Component {
                         placeholder="Password"
                         autoComplete="new-password"
                         name="password"
+                        value={this.state.password}
                         onChange={this.handleInputChange}
                       />
                     </InputGroup>
@@ -148,6 +151,7 @@ class Register extends Component {
                         placeholder="Repeat password"
                         autoComplete="new-password"
                         name="passwordValidate"
+                        value={this.state.passwordValidate}
                         onChange={this.handleInputChange}
                       />
                     </InputGroup>

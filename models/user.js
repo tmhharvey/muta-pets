@@ -25,6 +25,16 @@ const UserSchema = new Schema({
     default: true,
     required: true
   },
+  tutorials: {
+    tutorialPM: {
+      type: Boolean,
+      default: true
+    },
+    tutorial2: {
+      type: Boolean,
+      default: true
+    }
+  },
   date: {
     type: Date,
     default: Date.now

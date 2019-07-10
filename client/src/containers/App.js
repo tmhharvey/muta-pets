@@ -10,12 +10,12 @@ import {
 } from "react-router-dom";
 
 import Loadable from "react-loadable";
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "../ProtectedRoute";
 
 import AuthContextProvider, {
   AuthAppContext
-} from "./Context/auth/AuthContextProvider";
-import withAuthContext from "./Context/auth/Context_HOC";
+} from "../Context/auth/AuthContextProvider";
+import withAuthContext from "../Context/auth/Context_HOC";
 
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">
@@ -24,17 +24,17 @@ const loading = () => (
 );
 
 const Login = Loadable({
-  loader: () => import("./components/Login/Login"),
+  loader: () => import("../components/Login/Login"),
   loading
 });
 
-const MainDashboardPage = Loadable({
-  loader: () => import("./containers/MainDashboard"),
+const PetManagementPage = Loadable({
+  loader: () => import("../components/PetManagement/PetManagement"),
   loading
 });
 
 const Register = Loadable({
-  loader: () => import("./components/Register/Register"),
+  loader: () => import("../components/Register/Register"),
   loading
 });
 
@@ -51,7 +51,7 @@ class App extends Component {
                 <ProtectedRoute
                   exact
                   path="/home"
-                  component={withAuthContext(MainDashboardPage)}
+                  component={withAuthContext(PetManagementPage)}
                 />
                 <Route
                   exact
