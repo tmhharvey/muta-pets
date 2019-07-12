@@ -7,7 +7,12 @@ class DefaultNav extends Component {
   render() {
     return (
       <Row className="mainNav">
-        <Col sm="2 text-center">Map</Col>
+        <Col sm="2 text-center ">
+          <div className="mainNav__map">
+            {" "}
+            <p className="">Map</p>
+          </div>
+        </Col>
         <Col sm="8 text-center">middle nav content </Col>
         <Col sm="2 text-center">Welcome, {this.props.userName}!</Col>
       </Row>

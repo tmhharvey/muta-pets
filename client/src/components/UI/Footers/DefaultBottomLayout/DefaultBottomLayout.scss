@@ -1,6 +1,9 @@
+@import "../../../../assets/sass/abstract/variables.scss";
+
 .bottomLayout {
   border: 1px solid green;
   height: 28%;
+  background-color: $color-white;
   &__monsterImage {
     border: 1px solid darkgreen;
     height: 100%;
@@ -13,17 +16,30 @@
       height: 87%;
       width: 80%;
     }
+    &:hover {
+      cursor: pointer;
+    }
   }
   &__monsterStats {
-    border: 1px solid orangered;
+    border: 1px solid $color-primary;
+    background-color: $color-tertiary-light;
     & h1 {
       font-size: 2rem;
       // padding-top: 0.5rem;
       color: black;
+      font-weight: bolder;
+    }
+    & h3 {
+      font-size: 1.6rem;
+      // padding-top: 0.5rem;
+      color: $color-grey-dark-3;
+      margin-bottom: 1rem;
+      font-weight: bolder;
     }
     & p {
       text-align: left;
       padding-left: 4rem;
+      font-weight: bolder;
     }
   }
   &__content {

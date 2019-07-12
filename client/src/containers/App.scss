@@ -1,5 +1,21 @@
 @import "../assets/sass/base/base";
 @import "../assets/sass/base/typography";
+@import "../assets/sass/abstract/variables.scss";
+
+.contentContainer {
+  position: relative;
+  z-index: 1;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba($color-primary, 0.7),
+    rgba($color-secondary, 0.95)
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  font-family: "RPGAwesome";
+}
 
 .App {
   text-align: center;

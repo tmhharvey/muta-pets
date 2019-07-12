@@ -1,10 +1,25 @@
 @import "../../../assets/sass/abstract/variables.scss";
 
-h2,
-h3 {
-  color: #fff;
-}
+.tutorialContent {
+  position: relative;
+  z-index: 100;
+  &__mainTitle {
+    color: $color-secondary;
+    font-weight: bolder;
+    background-color: $color-primary-dark;
+    padding: 1rem;
+    border-radius: $default-border-radius;
+  }
 
-h1 {
-  color: $color-tertiary;
+  &__content {
+    padding: 5rem 0;
+  }
+
+  &__button {
+    position: relative;
+    bottom: -5rem;
+    font-size: $default-font-size;
+    padding: 1.5rem 3rem;
+    border-radius: $default-border-radius;
+  }
 }

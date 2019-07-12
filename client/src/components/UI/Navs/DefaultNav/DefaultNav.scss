@@ -1,4 +1,25 @@
+@import "../../../../assets/sass/abstract/variables.scss";
+
 .mainNav {
-  border: 3px solid orangered;
-  height: 7%;
+  background-color: $color-primary-dark;
+  height: 7vh;
+  color: $color-off-white;
+  &__map {
+    background-image: url("../../../../assets/img/map.png");
+    background-size: 40% 5.5rem;
+    background-repeat: no-repeat;
+    position: relative;
+
+    & p {
+      padding: 1rem 0rem 1.5rem 0.5rem;
+      font-size: 1.8rem;
+      color: $color-off-white;
+      font-family: "RPGAwesome";
+    }
+
+    &:hover {
+      background-color: $color-primary;
+      cursor: pointer;
+    }
+  }
 }

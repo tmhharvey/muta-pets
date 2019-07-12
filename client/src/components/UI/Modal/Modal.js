@@ -17,8 +17,9 @@ class Modal extends Component {
             backgroundImage: `url(${this.props.chosenImage})`
           }}
         >
+          <div className="Modal__gradient"> {this.props.children}</div>
+
           {/* <p className="Modal__close">X</p> */}
-          {this.props.children}
         </div>
       </>
     );

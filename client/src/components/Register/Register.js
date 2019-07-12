@@ -48,7 +48,6 @@ class Register extends Component {
           userName: userName
         }
       );
-      console.log("Register Response Data....." + registerResponse);
 
       // If a successful response...
 
@@ -79,99 +78,107 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="app flex-row align-items-center">
-        <Container>
-          <Row className="justify-content-center">
-            <Col md="9" lg="7" xl="6">
-              <Card className="mx-4">
-                <CardBody className="p-4">
-                  <Form>
-                    <h1>Register</h1>
-                    <p className="text-muted">Create your account</p>
-                    <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText />
-                      </InputGroupAddon>
-                      <Input
-                        type="text"
-                        placeholder="Username"
-                        autoComplete="username"
-                        name="userName"
-                        value={this.state.userName}
-                        onChange={this.handleInputChange}
-                      />
-                    </InputGroup>
+      <div className="app flex-row align-items-center registerSection">
+        <Row className="justify-content-center registerSection__card">
+          <Col md="9" lg="7" xl="6">
+            <Card className="mx-4">
+              <CardBody className="p-4">
+                <Form>
+                  <h1>Adventure and Prizes Await...</h1>
+                  <p className="text-muted">
+                    Create your account and secure your very own{" "}
+                    <strong className="registerSection--orangeFont">
+                      Muta Pet
+                    </strong>{" "}
+                    and{" "}
+                    <strong className="registerSection--greenFont">
+                      5000 FREE{" "}
+                    </strong>{" "}
+                    Muta Gems!!
+                  </p>
+                  <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText />
+                    </InputGroupAddon>
+                    <Input
+                      type="text"
+                      placeholder="Username"
+                      autoComplete="username"
+                      name="userName"
+                      value={this.state.userName}
+                      onChange={this.handleInputChange}
+                    />
+                  </InputGroup>
 
-                    <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>@</InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        type="text"
-                        placeholder="Email"
-                        autoComplete="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleInputChange}
-                      />
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="icon-lock" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        type="password"
-                        placeholder="Password"
-                        autoComplete="new-password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleInputChange}
-                      />
-                    </InputGroup>
-                    <InputGroup className="mb-4">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="icon-lock" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        type="password"
-                        placeholder="Repeat password"
-                        autoComplete="new-password"
-                        name="passwordValidate"
-                        value={this.state.passwordValidate}
-                        onChange={this.handleInputChange}
-                      />
-                    </InputGroup>
-                    {this.state.password === this.state.passwordValidate ? (
-                      <Button
-                        color="primary"
-                        block
-                        onClick={e => {
-                          this.registerHandler(
-                            e,
-                            this.state.email,
-                            this.state.password,
-                            this.state.userName
-                          );
-                        }}
-                      >
-                        Create Account
-                      </Button>
-                    ) : (
-                      <p className="text-danger">Passwords Don't Match!</p>
-                    )}
-                  </Form>
-                </CardBody>
-                <CardFooter className="p-4 text-center">
-                  {/* <img src={logo} alt="logo" /> */}
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
+                  <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>@</InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      type="text"
+                      placeholder="Email"
+                      autoComplete="email"
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleInputChange}
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="icon-lock" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      type="password"
+                      placeholder="Password"
+                      autoComplete="new-password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleInputChange}
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-4">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="icon-lock" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      type="password"
+                      placeholder="Repeat password"
+                      autoComplete="new-password"
+                      name="passwordValidate"
+                      value={this.state.passwordValidate}
+                      onChange={this.handleInputChange}
+                    />
+                  </InputGroup>
+                  {this.state.password === this.state.passwordValidate ? (
+                    <Button
+                      color="success"
+                      block
+                      onClick={e => {
+                        this.registerHandler(
+                          e,
+                          this.state.email,
+                          this.state.password,
+                          this.state.userName
+                        );
+                      }}
+                    >
+                      Create Account
+                    </Button>
+                  ) : (
+                    <p className="text-danger">Passwords Don't Match!</p>
+                  )}
+                </Form>
+              </CardBody>
+              <CardFooter className="p-4 text-center">
+                {/* <img src={logo} alt="logo" /> */}
+              </CardFooter>
+            </Card>
+          </Col>
+        </Row>
       </div>
     );
   }

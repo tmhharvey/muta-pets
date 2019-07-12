@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./DefaultBottomLayout.scss";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Progress } from "reactstrap";
 
 class DefaultBottomLayout extends Component {
   state = {};
@@ -25,17 +25,40 @@ class DefaultBottomLayout extends Component {
           <img src={this.state.petImage} />
         </Col>
         <Col sm="3 bottomLayout__monsterStats">
-          <strong>
-            <h1> Pet Name</h1>
-            <hr className="pb-3" />
-            <p>Hp: {this.state.petHp}</p>
-            <p>Attack: {this.state.petAttack}</p>
-            <p>Defense: {this.state.petDefense}</p>
-            <hr className="pb-3" />
-            <p>Hunger:</p>
-            <p>Energy:</p>
-            <p>Happiness:</p>
-          </strong>
+          <Row className="pt-3">
+            <Col sm="6">
+              <h3>Level: 1</h3>
+            </Col>
+            <Col sm="6">
+              <h3>BP: 0/20</h3>
+            </Col>{" "}
+            <hr />
+            <Col sm="4">
+              <p>Hp: {this.state.petHp}</p>{" "}
+            </Col>
+            <Col sm="4">
+              <p>Attack: {this.state.petAttack}</p>{" "}
+            </Col>
+            <Col sm="4">
+              <p>Defense: {this.state.petDefense}</p>
+            </Col>
+            <hr />
+            <Col sm="12">
+              <p>
+                Happiness: <Progress value={75} color="success" />
+              </p>
+            </Col>{" "}
+            <Col sm="12">
+              <p>
+                Energy: <Progress value={20} color="danger" />
+              </p>
+            </Col>{" "}
+            <Col sm="12">
+              <p>
+                Hunger: <Progress value={10} color="success" />
+              </p>
+            </Col>
+          </Row>
         </Col>
         <Col sm="4 bottomLayout__content">Content</Col>
         <Col sm="3 bottomLayout__charImage">Character Image</Col>

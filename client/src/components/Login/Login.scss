@@ -1,0 +1,36 @@
+@import "../../assets/sass/base/base";
+@import "../../assets/sass/base/typography";
+@import "../../assets/sass/abstract/variables.scss";
+
+.loginSection {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-dark, 0.4),
+      rgba($color-tertiary-dark, 0.4)
+    ),
+    url("../../assets/img/introImage.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: $default-border-radius;
+  height: 95vh;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 99;
+  & p {
+    font-size: $default-font-size;
+  }
+  &__card {
+    padding-top: 20rem;
+    border-radius: $default-border-radius;
+  }
+
+  &--greenFont {
+    color: green;
+  }
+  &--orangeFont {
+    color: orange;
+  }
+  &--background-primary {
+    background-color: $color-primary;
+  }
+}

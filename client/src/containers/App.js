@@ -41,7 +41,7 @@ const Register = Loadable({
 class App extends Component {
   render() {
     return (
-      <Row>
+      <Row className="contentContainer">
         <Col sm="1" />
         <Col sm="10">
           <BrowserRouter>
