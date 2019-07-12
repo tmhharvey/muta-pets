@@ -30,14 +30,9 @@ class Register extends Component {
     const value = target.value;
     const name = target.name;
 
-    this.setState(
-      {
-        [name]: value
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    this.setState({
+      [name]: value
+    });
   };
 
   registerHandler = async (e, email, password, userName) => {
@@ -45,8 +40,6 @@ class Register extends Component {
     console.log("we're about to post Register to the server");
 
     try {
-      console.log(process.env.REACT_APP_BACKEND);
-
       const registerResponse = await axios.post(
         process.env.REACT_APP_BACKEND + "auth/register",
         {
@@ -60,11 +53,8 @@ class Register extends Component {
       // If a successful response...
 
       if (registerResponse.data.status === 200) {
-        console.log("Sucessful register! Response is...");
-        console.log(registerResponse.data);
-        console.log(registerResponse.data.userId);
-        console.log(registerResponse.data.userType);
-        console.log("=======");
+        console.log("Sucessful register! Status is...");
+        console.log(registerResponse.data.status);
 
         // set state
         const newUserType = registerResponse.data.userType;

@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import "./SelectedPetInfo.scss";
+import "./InquiredPetInfo.scss";
 import { Row, Col, Button } from "reactstrap";
 
-class SelectedPetInfo extends Component {
+class InquiredPetInfo extends Component {
   state = {};
 
   render() {
-    console.log("pet info");
-    console.log(this.props.petInfo);
-
     return (
       <div>
         <h1
@@ -53,7 +50,7 @@ class SelectedPetInfo extends Component {
             <Button
               color="success selectedModalPetCard__selectPetBtn"
               size="lg"
-              //   onClick={this.state.petInfo.clicked}
+              onClick={() => this.props.chosenPetHandler(this.props.petInfo)}
             >
               Choose {this.props.petInfo.petName}!
             </Button>
@@ -64,4 +61,4 @@ class SelectedPetInfo extends Component {
   }
 }
 
-export default SelectedPetInfo;
+export default InquiredPetInfo;

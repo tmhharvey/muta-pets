@@ -3,9 +3,28 @@
   height: 28%;
   &__monsterImage {
     border: 1px solid darkgreen;
+    height: 100%;
+    width: 100%;
+    & h1 {
+      color: black;
+      font-size: 2rem;
+    }
+    & img {
+      height: 87%;
+      width: 80%;
+    }
   }
   &__monsterStats {
     border: 1px solid orangered;
+    & h1 {
+      font-size: 2rem;
+      // padding-top: 0.5rem;
+      color: black;
+    }
+    & p {
+      text-align: left;
+      padding-left: 4rem;
+    }
   }
   &__content {
     border: 1px solid skyblue;

@@ -4,7 +4,6 @@ import Backdrop from "../Backdrop/Backdrop";
 
 class Modal extends Component {
   render() {
-    console.log(this.props.chosenImage);
     return (
       <>
         <Backdrop show={this.props.show} topStyle={"0%"} leftStyle={"-20%"} />

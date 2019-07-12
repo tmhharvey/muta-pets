@@ -1,80 +1,52 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 import { Row, Col, Button } from "reactstrap";
 import Modal from "../UI/Modal/Modal";
-import Backdrop from "../UI/Backdrop/Backdrop";
-import fireGolem from "../../assets/img/fireGolem.png";
 import fireLandsImage from "../../assets/img/fireLandsImage.jpg";
 import tutorialPMImage from "../../assets/img/introImage.jpg";
 import Tutorial1PM from "./TutorialPM/Tutorial1PM";
 import DefaultNav from "../UI/Navs/DefaultNav/DefaultNav";
 import DefaultBottomLayout from "../UI/Footers/DefaultBottomLayout/DefaultBottomLayout";
-import SelectedPetInfo from "./SelectedPetInfo/SelectedPetInfo";
+import InquiredPetInfo from "./InquiredPetInfo/InquiredPetInfo";
+import PlaceHolderPet from "../../assets/img/placeholderPet.png";
 import "./PetManagement.scss";
+import StartingPetSelection from "./StartingPetSelection/StartingPetSelection";
 
 class PetManagement extends Component {
   state = {
     firstPetNotSelected: true,
-    startingPets: [
-      {
-        name: "Fire Golem",
-        image: fireGolem,
-        description:
-          "The Fire Golem is a pet of the fire type which comes from the Volcano lands.  This pet is very hard to train at first... but with time can become extremely powerful",
-        diet: "Rocks, leaves, and lava",
-        stats: {
-          Hp: 250,
-          Attack: 5,
-          Defense: 20
-        }
-      },
-      {
-        name: "Pet 2",
-        image: "-"
-      },
-      {
-        name: "Pet 3",
-        image: "-"
-      },
-      {
-        name: "Pet 4",
-        image: "-"
-      },
-      {
-        name: "Pet 5",
-        image: "-"
-      },
-      {
-        name: "Pet 6",
-        image: "-"
-      },
-      {
-        name: "Pet 7",
-        image: "-"
-      },
-      {
-        name: "Pet 8",
-        image: "-"
-      }
-    ],
     showTutorialPM: false,
-    selectedPetInfo: {},
-    selectedPetModal: false
+    inquiredPetInfo: {},
+    inquiredPetModal: false,
+    mainPetInfo: {
+      Hp: "",
+      Attack: "",
+      Defense: "",
+      mainPetImage: PlaceHolderPet
+    }
   };
 
   componentDidMount = async () => {
+    console.log("component did mount fired");
+    this.getUserInfo();
+  };
+
+  getUserInfo = async () => {
     const userInfo = await axios.get(
       process.env.REACT_APP_BACKEND + "/user/information"
     );
 
-    console.log("username Info");
-    console.log(userInfo.data);
+    if (!userInfo.data.session.email) {
+      this.props.history.push("/");
+    }
 
     if (userInfo.data.user) {
       this.setState({
         userName: userInfo.data.session.userName,
         firstPetNotSelected: userInfo.data.user.firstPetNotSelected,
-        showTutorialPM: userInfo.data.user.tutorials.tutorialPM
+        showTutorialPM: userInfo.data.user.tutorials.tutorialPM,
+        mainPetInfo: userInfo.data.user.mainPet
       });
     }
   };
@@ -83,9 +55,6 @@ class PetManagement extends Component {
     const updatedUser = await axios.post(
       process.env.REACT_APP_BACKEND + "/user/tutorialPM"
     );
-
-    console.log("user Info");
-    console.log(updatedUser.data);
 
     if (updatedUser.data.updatedUser) {
       this.setState({
@@ -101,71 +70,66 @@ class PetManagement extends Component {
     petDiet,
     petStats
   ) => {
-    console.log("selectedPetHandler Fired");
+    this.setState({
+      inquiredPetInfo: {
+        petName: petName,
+        petImage: petImage,
+        petDescription: petDescription,
+        petDiet: petDiet,
+        petStats: petStats
+      },
+      inquiredPetModal: true
+    });
+  };
+
+  chosenPetHandler = async petInfo => {
+    const updatedResult = await axios.post(
+      process.env.REACT_APP_BACKEND + "/user/firstPetSelected",
+      {
+        petInfo: petInfo
+      }
+    );
+    var parsedMainPet = JSON.parse(updatedResult.data.updatedUser.mainPet);
+
     this.setState(
       {
-        selectedPetInfo: {
-          petName: petName,
-          petImage: petImage,
-          petDescription: petDescription,
-          petDiet: petDiet,
-          petStats: petStats
-        },
-        selectedPetModal: true
+        mainPetInfo: parsedMainPet,
+        inquiredPetModal: false
       },
       () => {
-        console.log("Pet Info has been set");
+        this.getUserInfo();
       }
     );
   };
 
   render() {
-    var renderStartingPets;
-
-    if (this.state.firstPetNotSelected) {
-      renderStartingPets = this.state.startingPets.map(pet => {
-        return (
-          <Col md="3 text-center">
-            <div
-              className="selectPetCard text-center"
-              key={pet.name}
-              onClick={() => {
-                this.selectedPetHandler(
-                  pet.name,
-                  pet.image,
-                  pet.description,
-                  pet.diet,
-                  pet.stats
-                );
-              }}
-            >
-              <h3 className="selectPetCard__title">{pet.name}</h3>
-              <img src={fireGolem} />
-            </div>
-          </Col>
-        );
-      });
-    }
-
     return (
       <div className="mainDashboard">
         <DefaultNav userName={this.state.userName} />
-        <Row className="mainContent text-center">{renderStartingPets}</Row>
-        <DefaultBottomLayout />
+        <Row className="mainContent text-center">
+          {this.state.firstPetNotSelected ? (
+            <StartingPetSelection
+              selectedPetHandler={this.selectedPetHandler}
+            />
+          ) : null}
+        </Row>
+        {this.state.firstPetNotSelected ? null : (
+          <DefaultBottomLayout mainPetInfo={this.state.mainPetInfo} />
+        )}
 
-        <Modal
-          show={this.state.showTutorialPM}
-          backgroundImage={tutorialPMImage}
-        >
+        <Modal show={this.state.showTutorialPM} chosenImage={tutorialPMImage}>
           <Tutorial1PM clicked={this.tutorialModalHandler1} />
         </Modal>
 
-        {this.state.selectedPetModal ? (
+        {this.state.inquiredPetModal ? (
           <Modal
-            show={this.state.selectedPetModal}
+            show={this.state.inquiredPetModal}
             chosenImage={fireLandsImage}
           >
-            <SelectedPetInfo petInfo={this.state.selectedPetInfo} />
+            <InquiredPetInfo
+              petInfo={this.state.inquiredPetInfo}
+              chosenPetHandler={this.chosenPetHandler}
+            />
           </Modal>
         ) : null}
       </div>
