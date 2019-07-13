@@ -58,7 +58,7 @@ class StartingPetSelection extends Component {
         diet: "Rocks, leaves, and lava",
         stats: {
           Hp: 250,
-          Attack: 5,
+          Attack: 50,
           Defense: 20
         }
       },

@@ -6,14 +6,17 @@ class DefaultBottomLayout extends Component {
   state = {};
 
   componentDidMount = () => {
-    var petInfo = JSON.parse(this.props.mainPetInfo);
+    var petInfo = this.props.mainPetInfo;
 
     this.setState({
-      petImage: petInfo.petImage,
+      petImage: petInfo.image,
       petName: petInfo.petName,
-      petHp: petInfo.petStats.Hp,
-      petAttack: petInfo.petStats.Attack,
-      petDefense: petInfo.petStats.Defense
+      petHp: petInfo.stats.Hp,
+      petAttack: petInfo.stats.Attack,
+      petDefense: petInfo.stats.Defense,
+      petHappiness: petInfo.status.happiness,
+      petEnergy: petInfo.status.energy,
+      petHunger: petInfo.status.hunger
     });
   };
 
@@ -33,30 +36,39 @@ class DefaultBottomLayout extends Component {
               <h3>BP: 0/20</h3>
             </Col>{" "}
             <hr />
-            <Col sm="4">
+            <Col sm="4" className="pt-3">
               <p>Hp: {this.state.petHp}</p>{" "}
             </Col>
-            <Col sm="4">
+            <Col sm="4" className="pt-3">
               <p>Attack: {this.state.petAttack}</p>{" "}
             </Col>
-            <Col sm="4">
+            <Col sm="4" className="pt-3">
               <p>Defense: {this.state.petDefense}</p>
             </Col>
             <hr />
-            <Col sm="12">
-              <p>
-                Happiness: <Progress value={75} color="success" />
-              </p>
+            <Col sm="12 pt-3">
+              <div className="bottomLayout__monsterStats__statusBars">
+                <p>
+                  Happiness:{" "}
+                  <Progress value={this.state.petHappiness} color="success " />
+                </p>
+              </div>
             </Col>{" "}
             <Col sm="12">
-              <p>
-                Energy: <Progress value={20} color="danger" />
-              </p>
+              <div className="bottomLayout__monsterStats__statusBars">
+                <p>
+                  Energy:{" "}
+                  <Progress value={this.state.petEnergy} color="danger" />
+                </p>
+              </div>
             </Col>{" "}
             <Col sm="12">
-              <p>
-                Hunger: <Progress value={10} color="success" />
-              </p>
+              <div className="bottomLayout__monsterStats__statusBars">
+                <p>
+                  Hunger:{" "}
+                  <Progress value={this.state.petHunger} color="success" />
+                </p>
+              </div>
             </Col>
           </Row>
         </Col>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/user");
+const Pet = require("../../models/pet");
 
 // PUT Example
 // router.put("/:userid/exampleURL", async (req, res) => {
@@ -66,23 +67,42 @@ router.post("/tutorialPM", async (req, res) => {
 
 router.post("/firstPetSelected", async (req, res) => {
   var userToFind = req.session.email;
-  console.log(userToFind);
 
-  const mainPetInfo = JSON.stringify(req.body.petInfo);
+  const mainPetInfo = req.body.petInfo;
   console.log(mainPetInfo);
+
   const query = { email: userToFind };
+  const newPet = {
+    userId: req.session.userId,
+    main: true,
+    name: mainPetInfo.petName,
+    image: mainPetInfo.petImage,
+    description: mainPetInfo.petDescription,
+    diet: mainPetInfo.petDiet,
+    stats: mainPetInfo.petStats
+  };
+  console.log("===");
+  console.log(newPet);
 
   try {
+    const createdPet = await Pet.create(newPet);
+
+    console.log("created pet here");
+    console.log(createdPet);
+    console.log("updating user");
     var updatedUser = await User.findOneAndUpdate(
       query,
       {
         $set: {
-          mainPet: mainPetInfo,
+          mainPet: createdPet,
           firstPetNotSelected: false
         }
       },
       { new: true, upsert: true }
     );
+
+    console.log("user updated with their pet...");
+    console.log(updatedUser);
 
     res.json({
       status: 200,

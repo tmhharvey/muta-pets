@@ -20,10 +20,18 @@ class PetManagement extends Component {
     inquiredPetInfo: {},
     inquiredPetModal: false,
     mainPetInfo: {
-      Hp: "",
-      Attack: "",
-      Defense: "",
-      mainPetImage: PlaceHolderPet
+      stats: {
+        Hp: "",
+        Attack: "",
+        Defense: ""
+      },
+      status: {
+        happiness: "",
+        energy: "",
+        hunger: ""
+      },
+      image: PlaceHolderPet,
+      petName: ""
     }
   };
 
@@ -33,21 +41,30 @@ class PetManagement extends Component {
   };
 
   getUserInfo = async () => {
+    console.log("get user info fired");
     const userInfo = await axios.get(
       process.env.REACT_APP_BACKEND + "/user/information"
     );
 
+    console.log(userInfo.data.user);
+    console.log("before ===");
+    console.log(this.state);
+
     if (!userInfo.data.session.email) {
       this.props.history.push("/");
-    }
-
-    if (userInfo.data.user) {
-      this.setState({
-        userName: userInfo.data.session.userName,
-        firstPetNotSelected: userInfo.data.user.firstPetNotSelected,
-        showTutorialPM: userInfo.data.user.tutorials.tutorialPM,
-        mainPetInfo: userInfo.data.user.mainPet
-      });
+    } else {
+      this.setState(
+        {
+          userName: userInfo.data.user.userName,
+          firstPetNotSelected: userInfo.data.user.firstPetNotSelected,
+          showTutorialPM: userInfo.data.user.tutorials.tutorialPM,
+          mainPetInfo: userInfo.data.user.mainPet
+        },
+        () => {
+          console.log("after ===");
+          console.log(this.state);
+        }
+      );
     }
   };
 
@@ -89,17 +106,17 @@ class PetManagement extends Component {
         petInfo: petInfo
       }
     );
-    var parsedMainPet = JSON.parse(updatedResult.data.updatedUser.mainPet);
+    console.log("THE RESULT");
+    console.log(updatedResult);
+    var mainPet = updatedResult.data.updatedUser.mainPet;
+    console.log('THE USER"S CHOSEN PET HERE');
+    console.log(mainPet);
 
-    this.setState(
-      {
-        mainPetInfo: parsedMainPet,
-        inquiredPetModal: false
-      },
-      () => {
-        this.getUserInfo();
-      }
-    );
+    this.setState({
+      mainPetInfo: mainPet,
+      inquiredPetModal: false,
+      firstPetNotSelected: false
+    });
   };
 
   render() {

@@ -5,7 +5,7 @@ const UserSchema = new Schema({
   userName: {
     type: String,
     unique: true,
-    requireed: true
+    required: true
   },
   email: {
     type: String,
@@ -21,11 +21,11 @@ const UserSchema = new Schema({
     required: true
   },
   mainPet: {
-    type: String,
+    type: Object,
     default: ""
   },
   collectedPets: {
-    type: String,
+    type: Object,
     default: ""
   },
   firstPetNotSelected: {
