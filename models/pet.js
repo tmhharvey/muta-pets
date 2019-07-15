@@ -33,7 +33,7 @@ const PetSchema = new Schema({
   },
   status: {
     type: Object,
-    default: { happiness: 90, energy: 90, hunger: 25 }
+    default: { happiness: 90, energy: 90, hunger: 75 }
   },
 
   date: {

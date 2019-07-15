@@ -18,15 +18,43 @@ router.get("/information", async (req, res) => {
 
   var userToFind = req.session.email;
 
-  const query = { email: userToFind };
+  const userQuery = { email: userToFind };
+  const petQuery = { main: true, userId: req.session.userId };
 
   try {
-    var foundUser = await User.findOne(query);
+    var foundUser = await User.findOne(userQuery);
+
+    const foundPet = await Pet.findOne(petQuery);
     console.log(foundUser);
+    console.log(foundPet);
     res.json({
       status: 200,
       session: req.session,
-      user: foundUser
+      user: foundUser,
+      pet: foundPet
+    });
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
+router.get("/getAllPets", async (req, res) => {
+  console.log("pet route hit");
+
+  var petsOwner = req.session.userId;
+  console.log(req.session.userId);
+
+  const petQuery = { userId: petsOwner };
+
+  try {
+    const foundPets = await Pet.find(petQuery);
+    console.log("all the pets");
+    console.log(foundPets);
+    res.json({
+      status: 200,
+      session: req.session,
+      pets: foundPets
     });
   } catch (err) {
     console.log(err);
@@ -94,7 +122,6 @@ router.post("/firstPetSelected", async (req, res) => {
       query,
       {
         $set: {
-          mainPet: createdPet,
           firstPetNotSelected: false
         }
       },
@@ -107,7 +134,8 @@ router.post("/firstPetSelected", async (req, res) => {
     res.json({
       status: 200,
       session: req.session,
-      updatedUser: updatedUser
+      updatedUser: updatedUser,
+      chosenPet: createdPet
     });
   } catch (err) {
     console.log(err);

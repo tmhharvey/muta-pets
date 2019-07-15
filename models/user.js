@@ -20,14 +20,6 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  mainPet: {
-    type: Object,
-    default: ""
-  },
-  collectedPets: {
-    type: Object,
-    default: ""
-  },
   firstPetNotSelected: {
     type: Boolean,
     default: true,

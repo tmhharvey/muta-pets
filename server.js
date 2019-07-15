@@ -32,6 +32,12 @@ app.use("/auth", authController);
 const userController = require("./controllers/api/userController");
 app.use("/user", userController);
 
+const petController = require("./controllers/api/petController");
+app.use("/pet", petController);
+
+const gameController = require("./controllers/api/gameController");
+app.use("/game", gameController);
+
 // const dataController = require("./controllers/dataController");
 // app.use("/data", dataController);
 

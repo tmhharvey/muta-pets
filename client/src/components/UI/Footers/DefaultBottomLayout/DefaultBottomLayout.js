@@ -7,6 +7,7 @@ class DefaultBottomLayout extends Component {
 
   componentDidMount = () => {
     var petInfo = this.props.mainPetInfo;
+    console.log(petInfo);
 
     this.setState({
       petImage: petInfo.image,
@@ -50,7 +51,23 @@ class DefaultBottomLayout extends Component {
               <div className="bottomLayout__monsterStats__statusBars">
                 <p>
                   Happiness:{" "}
-                  <Progress value={this.state.petHappiness} color="success " />
+                  {this.state.petHappiness < 33 ? (
+                    <Progress
+                      striped
+                      value={this.state.petHappiness}
+                      color="danger"
+                    >
+                      <strong>{this.state.petHappiness} / 100</strong>
+                    </Progress>
+                  ) : (
+                    <Progress
+                      striped
+                      value={this.state.petHappiness}
+                      color="success"
+                    >
+                      <strong>{this.state.petHappiness} / 100</strong>
+                    </Progress>
+                  )}
                 </p>
               </div>
             </Col>{" "}
@@ -58,7 +75,23 @@ class DefaultBottomLayout extends Component {
               <div className="bottomLayout__monsterStats__statusBars">
                 <p>
                   Energy:{" "}
-                  <Progress value={this.state.petEnergy} color="danger" />
+                  {this.state.petEnergy < 33 ? (
+                    <Progress
+                      striped
+                      value={this.state.petEnergy}
+                      color="danger"
+                    >
+                      <strong>{this.state.petEnergy} / 100</strong>
+                    </Progress>
+                  ) : (
+                    <Progress
+                      striped
+                      value={this.state.petEnergy}
+                      color="success"
+                    >
+                      <strong>{this.state.petEnergy} / 100</strong>
+                    </Progress>
+                  )}
                 </p>
               </div>
             </Col>{" "}
@@ -66,7 +99,23 @@ class DefaultBottomLayout extends Component {
               <div className="bottomLayout__monsterStats__statusBars">
                 <p>
                   Hunger:{" "}
-                  <Progress value={this.state.petHunger} color="success" />
+                  {this.state.petHunger < 60 ? (
+                    <Progress
+                      striped
+                      value={this.state.petHunger}
+                      color="success"
+                    >
+                      <strong>{this.state.petHunger} / 100</strong>
+                    </Progress>
+                  ) : (
+                    <Progress
+                      striped
+                      value={this.state.petHunger}
+                      color="danger"
+                    >
+                      <strong>{this.state.petHunger} / 100</strong>
+                    </Progress>
+                  )}
                 </p>
               </div>
             </Col>

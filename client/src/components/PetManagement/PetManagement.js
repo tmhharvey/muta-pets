@@ -12,6 +12,9 @@ import InquiredPetInfo from "./InquiredPetInfo/InquiredPetInfo";
 import PlaceHolderPet from "../../assets/img/placeholderPet.png";
 import "./PetManagement.scss";
 import StartingPetSelection from "./StartingPetSelection/StartingPetSelection";
+import PetManagementDashboard from "./PetManagementDashboard/PetManagementDashboard";
+import foodDefault from "../../assets/img/meat.png";
+import healthPotion from "../../assets/img/healthPotion.png";
 
 class PetManagement extends Component {
   state = {
@@ -32,7 +35,41 @@ class PetManagement extends Component {
       },
       image: PlaceHolderPet,
       petName: ""
-    }
+    },
+    inventory: [
+      {
+        name: "Meat",
+        image: foodDefault
+      },
+      {
+        name: "Health Potion",
+        image: healthPotion
+      },
+      {
+        name: "Meat",
+        image: foodDefault
+      },
+      {
+        name: "Health Potion",
+        image: healthPotion
+      },
+      {
+        name: "Meat",
+        image: foodDefault
+      },
+      {
+        name: "Health Potion",
+        image: healthPotion
+      },
+      {
+        name: "Meat",
+        image: foodDefault
+      },
+      {
+        name: "Health Potion",
+        image: healthPotion
+      }
+    ]
   };
 
   componentDidMount = async () => {
@@ -46,25 +83,15 @@ class PetManagement extends Component {
       process.env.REACT_APP_BACKEND + "/user/information"
     );
 
-    console.log(userInfo.data.user);
-    console.log("before ===");
-    console.log(this.state);
-
     if (!userInfo.data.session.email) {
       this.props.history.push("/");
     } else {
-      this.setState(
-        {
-          userName: userInfo.data.user.userName,
-          firstPetNotSelected: userInfo.data.user.firstPetNotSelected,
-          showTutorialPM: userInfo.data.user.tutorials.tutorialPM,
-          mainPetInfo: userInfo.data.user.mainPet
-        },
-        () => {
-          console.log("after ===");
-          console.log(this.state);
-        }
-      );
+      this.setState({
+        userName: userInfo.data.user.userName,
+        firstPetNotSelected: userInfo.data.user.firstPetNotSelected,
+        showTutorialPM: userInfo.data.user.tutorials.tutorialPM,
+        mainPetInfo: userInfo.data.pet
+      });
     }
   };
 
@@ -108,7 +135,7 @@ class PetManagement extends Component {
     );
     console.log("THE RESULT");
     console.log(updatedResult);
-    var mainPet = updatedResult.data.updatedUser.mainPet;
+    var mainPet = updatedResult.data.chosenPet;
     console.log('THE USER"S CHOSEN PET HERE');
     console.log(mainPet);
 
@@ -128,7 +155,12 @@ class PetManagement extends Component {
             <StartingPetSelection
               selectedPetHandler={this.selectedPetHandler}
             />
-          ) : null}
+          ) : (
+            <PetManagementDashboard
+              inventory={this.state.inventory}
+              getUserInfo={this.getUserInfo}
+            />
+          )}
         </Row>
         {this.state.firstPetNotSelected ? null : (
           <DefaultBottomLayout mainPetInfo={this.state.mainPetInfo} />

@@ -135,7 +135,7 @@ class StartingPetSelection extends Component {
               );
             }}
           >
-            <h3 className="selectPetCard__title">{pet.name}</h3>
+            G
             <img src={pet.image} />
           </div>
         </Col>
