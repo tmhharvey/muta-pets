@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, Button } from "reactstrap";
 import PlaceHolderPet from "../../../assets/img/placeholderPet.png";
 import axios from "axios";
+import ItemsHandler from "../../helpers/itemsHandler.js";
 import "./PetManagementDashboard.scss";
 
 class PetManagementDashboard extends Component {
@@ -10,7 +11,7 @@ class PetManagementDashboard extends Component {
     mainPet: "",
     inventoryItemActive: false,
     petInfoActive: true,
-    activeItemName: null
+    activeItem: null
   };
 
   componentDidMount = async () => {
@@ -39,30 +40,26 @@ class PetManagementDashboard extends Component {
     });
   };
 
-  inventoryStateHandler = itemName => {
+  inventoryStateHandler = item => {
     if (this.state.inventoryItemActive) {
       this.setState({
         inventoryItemActive: false,
-        activeItemName: null
+        activeItem: null
       });
     } else {
       this.setState({
         inventoryItemActive: true,
-        activeItemName: itemName
+        activeItem: item
       });
     }
   };
 
   itemUsedHandler = async petId => {
-    console.log(this.state.activeItemName);
+    var usedItem = this.state.activeItem;
+    // ItemsHandler.foodItemHandler(this.state.activeItemName);
     if (this.state.inventoryItemActive) {
-      const itemUsed = await axios.post(
-        process.env.REACT_APP_BACKEND + "/pet/useItem",
-        {
-          item: this.state.activeItemName,
-          id: petId
-        }
-      );
+      var itemUsed = await ItemsHandler.foodItemHandler(petId, usedItem);
+
       console.log("item route was successful");
       console.log(itemUsed);
       if (itemUsed.data.status == 200) {
@@ -80,6 +77,8 @@ class PetManagementDashboard extends Component {
   };
 
   render() {
+    console.log("@@@@@@@@@@@@@@");
+    console.log(this.props.inventory);
     var renderedMainPet = (
       <Col md="3" className="">
         <div
@@ -118,17 +117,19 @@ class PetManagementDashboard extends Component {
       );
     });
 
-    var renderInventory = this.props.inventory.map(item => {
+    var renderInventory = this.props.inventory.map(itemInfo => {
+      console.log(itemInfo);
+
       return (
         <Col sm="4">
-          <p> {item.name} </p>
+          <p> {itemInfo.name} </p>
           <div
             className="inventorySection__inventoryCard"
             onClick={() => {
-              this.inventoryStateHandler(item.name);
+              this.inventoryStateHandler(itemInfo);
             }}
           >
-            <img src={item.image} />
+            <img src={itemInfo.image} />
           </div>
         </Col>
       );

@@ -13,8 +13,7 @@ import PlaceHolderPet from "../../assets/img/placeholderPet.png";
 import "./PetManagement.scss";
 import StartingPetSelection from "./StartingPetSelection/StartingPetSelection";
 import PetManagementDashboard from "./PetManagementDashboard/PetManagementDashboard";
-import foodDefault from "../../assets/img/meat.png";
-import healthPotion from "../../assets/img/healthPotion.png";
+import FoodList from "../helpers/foodItemsList";
 
 class PetManagement extends Component {
   state = {
@@ -36,43 +35,11 @@ class PetManagement extends Component {
       image: PlaceHolderPet,
       petName: ""
     },
-    inventory: [
-      {
-        name: "Meat",
-        image: foodDefault
-      },
-      {
-        name: "Health Potion",
-        image: healthPotion
-      },
-      {
-        name: "Meat",
-        image: foodDefault
-      },
-      {
-        name: "Health Potion",
-        image: healthPotion
-      },
-      {
-        name: "Meat",
-        image: foodDefault
-      },
-      {
-        name: "Health Potion",
-        image: healthPotion
-      },
-      {
-        name: "Meat",
-        image: foodDefault
-      },
-      {
-        name: "Health Potion",
-        image: healthPotion
-      }
-    ]
+    inventory: []
   };
 
   componentDidMount = async () => {
+    console.log(FoodList);
     console.log("component did mount fired");
     this.getUserInfo();
   };
@@ -90,7 +57,8 @@ class PetManagement extends Component {
         userName: userInfo.data.user.userName,
         firstPetNotSelected: userInfo.data.user.firstPetNotSelected,
         showTutorialPM: userInfo.data.user.tutorials.tutorialPM,
-        mainPetInfo: userInfo.data.pet
+        mainPetInfo: userInfo.data.pet,
+        inventory: userInfo.data.user.inventory
       });
     }
   };
@@ -163,7 +131,12 @@ class PetManagement extends Component {
           )}
         </Row>
         {this.state.firstPetNotSelected ? null : (
-          <DefaultBottomLayout mainPetInfo={this.state.mainPetInfo} />
+          <DefaultBottomLayout
+            mainPetInfo={this.state.mainPetInfo}
+            petHunger={this.state.mainPetInfo.status.hunger}
+            petEnergy={this.state.mainPetInfo.status.energy}
+            petHappiness={this.state.mainPetInfo.status.happiness}
+          />
         )}
 
         <Modal show={this.state.showTutorialPM} chosenImage={tutorialPMImage}>

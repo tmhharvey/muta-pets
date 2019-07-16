@@ -17,7 +17,7 @@ class DefaultBottomLayout extends Component {
       petDefense: petInfo.stats.Defense,
       petHappiness: petInfo.status.happiness,
       petEnergy: petInfo.status.energy,
-      petHunger: petInfo.status.hunger
+      petHunger: this.props.petHunger
     });
   };
 
@@ -54,18 +54,18 @@ class DefaultBottomLayout extends Component {
                   {this.state.petHappiness < 33 ? (
                     <Progress
                       striped
-                      value={this.state.petHappiness}
+                      value={this.props.petHappiness}
                       color="danger"
                     >
-                      <strong>{this.state.petHappiness} / 100</strong>
+                      <strong>{this.props.petHappiness} / 100</strong>
                     </Progress>
                   ) : (
                     <Progress
                       striped
-                      value={this.state.petHappiness}
+                      value={this.props.petHappiness}
                       color="success"
                     >
-                      <strong>{this.state.petHappiness} / 100</strong>
+                      <strong>{this.props.petHappiness} / 100</strong>
                     </Progress>
                   )}
                 </p>
@@ -78,18 +78,18 @@ class DefaultBottomLayout extends Component {
                   {this.state.petEnergy < 33 ? (
                     <Progress
                       striped
-                      value={this.state.petEnergy}
+                      value={this.props.petEnergy}
                       color="danger"
                     >
-                      <strong>{this.state.petEnergy} / 100</strong>
+                      <strong>{this.props.petEnergy} / 100</strong>
                     </Progress>
                   ) : (
                     <Progress
                       striped
-                      value={this.state.petEnergy}
+                      value={this.props.petEnergy}
                       color="success"
                     >
-                      <strong>{this.state.petEnergy} / 100</strong>
+                      <strong>{this.props.petEnergy} / 100</strong>
                     </Progress>
                   )}
                 </p>
@@ -99,21 +99,21 @@ class DefaultBottomLayout extends Component {
               <div className="bottomLayout__monsterStats__statusBars">
                 <p>
                   Hunger:{" "}
-                  {this.state.petHunger < 60 ? (
+                  {this.props.petHunger < 60 ? (
                     <Progress
                       striped
-                      value={this.state.petHunger}
+                      value={this.props.petHunger}
                       color="success"
                     >
-                      <strong>{this.state.petHunger} / 100</strong>
+                      <strong>{this.props.petHunger} / 100</strong>
                     </Progress>
                   ) : (
                     <Progress
                       striped
-                      value={this.state.petHunger}
+                      value={this.props.petHunger}
                       color="danger"
                     >
-                      <strong>{this.state.petHunger} / 100</strong>
+                      <strong>{this.props.petHunger} / 100</strong>
                     </Progress>
                   )}
                 </p>

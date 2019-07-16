@@ -35,6 +35,9 @@ const UserSchema = new Schema({
       default: true
     }
   },
+  inventory: {
+    type: Array
+  },
   date: {
     type: Date,
     default: Date.now
