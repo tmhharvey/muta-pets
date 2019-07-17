@@ -28,7 +28,12 @@ const Login = Loadable({
   loading
 });
 
-const PetManagementPage = Loadable({
+const AbilitiesManagement = Loadable({
+  loader: () => import("../components/AbilitiesManagement/AbilitiesManagement"),
+  loading
+});
+
+const PetManagement = Loadable({
   loader: () => import("../components/PetManagement/PetManagement"),
   loading
 });
@@ -44,23 +49,30 @@ class App extends Component {
       <Row className="contentContainer">
         <Col sm="1" />
         <Col sm="10">
-          <BrowserRouter>
-            <AuthContextProvider>
-              <Switch>
-                <Route exact path="/" component={withAuthContext(Login)} />
-                <ProtectedRoute
-                  exact
-                  path="/home"
-                  component={withAuthContext(PetManagementPage)}
-                />
-                <Route
-                  exact
-                  path="/register"
-                  component={withAuthContext(Register)}
-                />
-              </Switch>
-            </AuthContextProvider>
-          </BrowserRouter>
+          <div className="mainDashboard">
+            <BrowserRouter>
+              <AuthContextProvider>
+                <Switch>
+                  <Route exact path="/" component={withAuthContext(Login)} />
+                  <ProtectedRoute
+                    exact
+                    path="/home"
+                    component={withAuthContext(PetManagement)}
+                  />
+                  <ProtectedRoute
+                    exact
+                    path="/pet-abilities"
+                    component={withAuthContext(AbilitiesManagement)}
+                  />
+                  <Route
+                    exact
+                    path="/register"
+                    component={withAuthContext(Register)}
+                  />
+                </Switch>
+              </AuthContextProvider>
+            </BrowserRouter>
+          </div>
         </Col>
         <Col sm="1" />
       </Row>

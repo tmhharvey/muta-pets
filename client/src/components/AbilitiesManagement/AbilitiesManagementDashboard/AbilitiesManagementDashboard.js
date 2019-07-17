@@ -3,42 +3,34 @@ import { Row, Col, Button } from "reactstrap";
 import PlaceHolderPet from "../../../assets/img/placeholderPet.png";
 import axios from "axios";
 import ItemsHandler from "../../helpers/itemsHandler.js";
-import "./PetManagementDashboard.scss";
+import "./AbilitiesManagementDashboard.scss";
 import Bite from "../../../assets/img/bite.png";
-
-class PetManagementDashboard extends Component {
+import Flail from "../../../assets/img/flail.png";
+class AbilitiesManagementDashboard extends Component {
   state = {
     collectedPets: [],
-    mainPet: "",
+    mainPet: {
+      availableAbilities: []
+    },
     inventoryItemActive: false,
     petInfoActive: true,
     activeItem: null
   };
-
   componentDidMount = async () => {
-    console.log("componentDidMount Fired");
-
+    console.log("componentDidMount for AbilitiesManagementDashboard Fired");
+    console.log(Flail);
     this.getPetInfo();
   };
 
   getPetInfo = async () => {
-    const userPets = await axios.get(
-      process.env.REACT_APP_BACKEND + "/user/getAllPets"
+    const foundMainPet = await axios.get(
+      process.env.REACT_APP_BACKEND + "/user/getMainPet"
     );
+    console.log("MAIN PET HERE");
+    console.log(foundMainPet.data.mainPet);
 
-    userPets.data.pets.map(pet => {
-      var updatedPetArray = [];
-      if (pet.main) {
-        this.setState({
-          mainPet: pet
-        });
-      } else {
-        var collectedPetsArray = [...this.state.collectedPets];
-        collectedPetsArray.push(pet);
-        this.setState({
-          collectedPets: collectedPetsArray
-        });
-      }
+    this.setState({
+      mainPet: foundMainPet.data.mainPet
     });
   };
 
@@ -95,43 +87,18 @@ class PetManagementDashboard extends Component {
   };
 
   render() {
-    var renderedMainPet = (
-      <Col md="3" className="">
-        <div
-          className={
-            this.state.inventoryItemActive
-              ? "mainPetCard inventoryActive"
-              : "mainPetCard"
-          }
-          onClick={() => {
-            this.itemUsedHandler(this.state.mainPet._id);
-          }}
-        >
-          <h3 className="mainPetCard__title">{this.state.mainPet.name}</h3>{" "}
-          <img src={this.state.mainPet.image} />
-        </div>
-      </Col>
+    var renderedAvailableAbilities = this.state.mainPet.availableAbilities.map(
+      ability => {
+        return (
+          <Col sm="3" key={ability.name}>
+            <h3>{ability.name}</h3>
+            <button className="abilitiesCard">
+              <img src={ability.image} />
+            </button>
+          </Col>
+        );
+      }
     );
-
-    var renderCollectedPets = this.state.collectedPets.map(collectedPet => {
-      return (
-        <Col md="3" className="" key={collectedPet._id}>
-          <div
-            className={
-              this.state.inventoryItemActive
-                ? "collectedPetsCard inventoryActive"
-                : "collectedPetsCard"
-            }
-            onClick={() => {
-              this.itemUsedHandler(collectedPet._id);
-            }}
-          >
-            <h3 className="collectedPetsCard__title">{collectedPet.name}</h3>{" "}
-            <img src={collectedPet.image} />
-          </div>
-        </Col>
-      );
-    });
 
     var renderInventory = this.props.inventory.map((itemInfo, Index) => {
       return (
@@ -159,8 +126,31 @@ class PetManagementDashboard extends Component {
     return (
       <>
         <Col sm="9">
-          <Row>
-            {renderedMainPet} {renderCollectedPets}
+          <Row className="abilitiesSelectionSection">
+            <Col md="5" className="">
+              <div
+                className={
+                  this.state.inventoryItemActive
+                    ? "abilitiesSelectionSection__mainPetCard inventoryActive"
+                    : "abilitiesSelectionSection__mainPetCard"
+                }
+                onClick={() => {
+                  this.itemUsedHandler(this.state.mainPet._id);
+                }}
+              >
+                <h3 className="mainPetCard__title">
+                  {this.state.mainPet.name}
+                </h3>{" "}
+                <img src={this.state.mainPet.image} />
+              </div>
+            </Col>
+            <Col md="7">
+              <div className="abilitiesSelectionSection__title">
+                <h2>Available Abilities</h2>
+                <hr />
+                <Row>{renderedAvailableAbilities}</Row>
+              </div>
+            </Col>
           </Row>
         </Col>
         <Col sm="3">
@@ -176,4 +166,4 @@ class PetManagementDashboard extends Component {
   }
 }
 
-export default PetManagementDashboard;
+export default AbilitiesManagementDashboard;

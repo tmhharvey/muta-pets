@@ -62,6 +62,29 @@ router.get("/getAllPets", async (req, res) => {
   }
 });
 
+router.get("/getMainPet", async (req, res) => {
+  console.log("MAIN PET route hit");
+
+  var petsOwner = req.session.userId;
+  console.log(req.session.userId);
+
+  const petQuery = { userId: petsOwner, main: true };
+
+  try {
+    const foundMainPet = await Pet.findOne(petQuery);
+    console.log("@@@@@@@@@@@@@@@ User's Main Pet @@@@@@@@@@@@@@@@@");
+    console.log(foundMainPet);
+    res.json({
+      status: 200,
+      session: req.session,
+      mainPet: foundMainPet
+    });
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
 router.post("/tutorialPM", async (req, res) => {
   var userToFind = req.session.email;
 
@@ -137,6 +160,63 @@ router.post("/firstPetSelected", async (req, res) => {
       updatedUser: updatedUser,
       chosenPet: createdPet
     });
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
+router.post("/updateInventory", async (req, res) => {
+  var userToFind = req.session.email;
+  var inventoryIndex = req.body.inventoryIndex;
+  var indexQuery = `inventory.${inventoryIndex}.defaultCount`;
+
+  console.log("the index is: " + inventoryIndex);
+
+  const query = { email: userToFind };
+
+  try {
+    var updatedUser = await User.findOneAndUpdate(
+      query,
+      {
+        $inc: {
+          [indexQuery]: -1
+        }
+      },
+      { new: true }
+    );
+
+    console.log("==========the updated users data is========");
+    console.log(updatedUser);
+
+    if (updatedUser.inventory[inventoryIndex].defaultCount < 1) {
+      console.log(
+        "THE ITEM IS ALL USED UP ========================================="
+      );
+      updatedUser.inventory.splice(inventoryIndex, 1);
+      console.log(updatedUser);
+      var userUpdatedInventory = await User.findOneAndUpdate(
+        query,
+        updatedUser,
+        { returnNewDocument: true }
+      );
+      console.log("@@@@@@@@@@@@@@@ UPDATED USER INVENTORY @@@@@@@@@@@@@@@@@@");
+      console.log(userUpdatedInventory);
+
+      res.json({
+        status: 200,
+        session: req.session,
+        updatedUser: userUpdatedInventory
+      });
+    } else {
+      console.log(updatedUser);
+
+      res.json({
+        status: 200,
+        session: req.session,
+        updatedUser: updatedUser
+      });
+    }
   } catch (err) {
     console.log(err);
     res.send(err);

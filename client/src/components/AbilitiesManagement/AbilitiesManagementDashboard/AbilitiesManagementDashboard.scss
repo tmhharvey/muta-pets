@@ -1,0 +1,92 @@
+@import "../../../assets/sass/base/base";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/abstract/variables.scss";
+
+.abilitiesSelectionSection {
+  height: 100%;
+  &__mainPetCard {
+    height: 95%;
+    width: 90%;
+    border: 5px solid gold;
+    margin: 0 auto;
+    position: relative;
+
+    border-radius: 2rem;
+    cursor: pointer;
+    background-color: #fff;
+
+    &__title {
+      position: absolute;
+      left: 50%;
+      top: 2%;
+      font-weight: bold;
+      transform: translate(-50%, -50%);
+      color: black;
+    }
+    img {
+      height: 90%;
+      width: 100%;
+      margin-top: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      z-index: 1;
+    }
+    &:hover {
+      background-color: gold;
+      color: #fff !important;
+    }
+  }
+
+  &__title {
+    & h2 {
+      color: black;
+      font-size: 2rem;
+    }
+  }
+}
+
+.inventorySection {
+  height: 100%;
+  border-left: 4px solid $color-primary;
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    color: $color-tertiary;
+    font-weight: 900;
+  }
+
+  &__inventoryCard {
+    height: 7.5rem;
+    width: 7.5rem;
+    padding: 0.5rem 0.2rem;
+    margin: 1rem auto;
+    position: relative;
+    cursor: pointer;
+    background-color: $color-tertiary;
+    border: outset 5px darken(#b5651d, 15%);
+
+    &:hover {
+      background-color: $color-tertiary-light;
+    }
+
+    & img {
+      height: 90%;
+      height: 90%;
+    }
+    &__itemUses {
+      position: absolute;
+      top: -7%;
+      right: 7%;
+      font-size: 1.4rem;
+      color: $color-off-white;
+      border-radius: 8px;
+      font-weight: 900;
+    }
+  }
+}
+
+.inventoryActive {
+  border: 5px solid #00ff00;
+}

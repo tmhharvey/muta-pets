@@ -5,33 +5,34 @@ const Pet = require("../../models/pet");
 
 router.post("/useItemHunger", async (req, res) => {
   console.log("Item route was hit");
+  console.log(req.body.id);
 
   var item = req.body.item;
   var petId = req.body.id;
 
+  petQuery = { _id: petId };
   var hungerIncrement = req.body.item.effect;
-  console.log(hungerIncrement);
-  query = { _id: petId };
   try {
     var updatedPet = await Pet.findOneAndUpdate(
-      query,
+      petQuery,
       {
         $inc: {
           "status.hunger": hungerIncrement
         }
       },
-      { multi: true, new: true }
+      { new: true }
     );
-    console.log("========");
-    console.log(updatedPet.status.hunger);
-    console.log("========");
+
     if (updatedPet.status.hunger < 0) {
+      console.log(
+        "############### THE PETS HUNGER IS COMPLETED QUENCHED #############"
+      );
       var updatedHungerZero = await Pet.findOneAndUpdate(
-        query,
+        petQuery,
         {
           "status.hunger": 0
         },
-        { multi: true }
+        { multi: true, new: true }
       );
 
       console.log(updatedHungerZero);

@@ -88,12 +88,25 @@
     margin: 1rem auto;
     position: relative;
     cursor: pointer;
-    background-color: #ccc;
+    background-color: $color-tertiary;
     border: outset 5px darken(#b5651d, 15%);
+
+    &:hover {
+      background-color: $color-tertiary-light;
+    }
 
     & img {
       height: 90%;
       height: 90%;
+    }
+    &__itemUses {
+      position: absolute;
+      top: -7%;
+      right: 7%;
+      font-size: 1.4rem;
+      color: $color-off-white;
+      border-radius: 8px;
+      font-weight: 900;
     }
   }
 }

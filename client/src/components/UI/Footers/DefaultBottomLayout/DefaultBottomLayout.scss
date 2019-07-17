@@ -21,8 +21,10 @@
     }
   }
   &__monsterStats {
-    border: 1px solid $color-primary;
+    border: outset 2px $color-primary-dark;
     background-color: $color-primary-light;
+    padding-left: 2rem;
+    padding-right: 2rem;
     & h1 {
       font-size: 2rem;
       // padding-top: 0.5rem;
@@ -36,24 +38,72 @@
       margin-bottom: 1rem;
       font-weight: bolder;
     }
-    & p {
-      text-align: left;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      font-weight: bolder;
-    }
-    &__statusBars {
+
+    &--statusBars {
       width: 90%;
       font-size: 1.2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      & p {
+        text-align: left;
+        font-weight: bolder;
+        margin-bottom: 0.2rem;
+      }
     }
   }
   &__content {
-    border: 1px solid skyblue;
+    background-color: $color-primary-light;
+    border: outset 2px $color-primary-dark;
+    & h4 {
+      color: black;
+    }
   }
   &__charImage {
     border: 1px solid pink;
   }
   .progress {
     font-size: 1.1rem;
+  }
+}
+
+.abilitiesCard {
+  height: 6rem;
+  width: 6rem;
+  padding: 0.5rem 0.2rem;
+  margin: 1rem auto;
+  position: relative;
+  cursor: pointer;
+  background-color: #ccc;
+  border: outset 5px darken(#b5651d, 15%);
+  &:hover {
+    background-color: lighten(#ccc, 25%);
+  }
+  &:disabled {
+    background-color: #ac9980;
+    border: 1px solid #7e7365;
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  & img {
+    height: 90%;
+    height: 90%;
+  }
+  &--cooldown {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    font-size: 1.2rem;
+    transform: translate(-50%, -50%);
+    color: #ffc300;
+    background: linear-gradient(
+      to right bottom,
+      rgba(#000, 0.8),
+      rgba(#323232, 0.8)
+    );
+    padding: 2.1rem 0.3rem;
+    border-radius: 8px;
+    font-weight: bolder;
   }
 }

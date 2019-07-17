@@ -33,13 +33,14 @@ class PetManagement extends Component {
         hunger: ""
       },
       image: PlaceHolderPet,
-      petName: ""
+      petName: "",
+
+      abilities: []
     },
     inventory: []
   };
 
   componentDidMount = async () => {
-    console.log(FoodList);
     console.log("component did mount fired");
     this.getUserInfo();
   };
@@ -116,7 +117,7 @@ class PetManagement extends Component {
 
   render() {
     return (
-      <div className="mainDashboard">
+      <>
         <DefaultNav userName={this.state.userName} />
         <Row className="mainContent text-center">
           {this.state.firstPetNotSelected ? (
@@ -132,10 +133,15 @@ class PetManagement extends Component {
         </Row>
         {this.state.firstPetNotSelected ? null : (
           <DefaultBottomLayout
-            mainPetInfo={this.state.mainPetInfo}
+            petHp={this.state.mainPetInfo.stats.Hp}
+            petDefense={this.state.mainPetInfo.stats.Defense}
+            petAttack={this.state.mainPetInfo.stats.Attack}
+            petImage={this.state.mainPetInfo.image}
+            petName={this.state.mainPetInfo.name}
             petHunger={this.state.mainPetInfo.status.hunger}
             petEnergy={this.state.mainPetInfo.status.energy}
             petHappiness={this.state.mainPetInfo.status.happiness}
+            abilities={this.state.mainPetInfo.abilities}
           />
         )}
 
@@ -154,7 +160,7 @@ class PetManagement extends Component {
             />
           </Modal>
         ) : null}
-      </div>
+      </>
     );
   }
 }
