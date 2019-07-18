@@ -1,0 +1,17 @@
+@import "../../../assets/sass/base/base";
+@import "../../../assets/sass/base/typography";
+@import "../../../assets/sass/abstract/variables.scss";
+
+.simpleTooltip > .tooltip-inner {
+  background-color: $color-primary-dark;
+  width: 100%;
+  max-width: 35rem;
+
+  & p {
+    font-size: 1.6rem;
+  }
+}
+
+// .simpleTooltip > .tooltip-arrow {
+// ...
+// }

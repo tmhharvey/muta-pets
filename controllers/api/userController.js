@@ -126,11 +126,12 @@ router.post("/firstPetSelected", async (req, res) => {
   const newPet = {
     userId: req.session.userId,
     main: true,
-    name: mainPetInfo.petName,
-    image: mainPetInfo.petImage,
-    description: mainPetInfo.petDescription,
-    diet: mainPetInfo.petDiet,
-    stats: mainPetInfo.petStats
+    name: mainPetInfo.name,
+    image: mainPetInfo.image,
+    description: mainPetInfo.description,
+    diet: mainPetInfo.diet,
+    stats: mainPetInfo.stats,
+    abilities: mainPetInfo.abilities
   };
   console.log("===");
   console.log(newPet);

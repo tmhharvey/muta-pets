@@ -41,12 +41,10 @@ class PetManagement extends Component {
   };
 
   componentDidMount = async () => {
-    console.log("component did mount fired");
     this.getUserInfo();
   };
 
   getUserInfo = async () => {
-    console.log("get user info fired");
     const userInfo = await axios.get(
       process.env.REACT_APP_BACKEND + "/user/information"
     );
@@ -76,20 +74,28 @@ class PetManagement extends Component {
     }
   };
 
+  modalToggler = () => {
+    this.setState({
+      inquiredPetModal: false
+    });
+  };
+
   selectedPetHandler = (
     petName,
     petImage,
     petDescription,
     petDiet,
-    petStats
+    petStats,
+    petAbilities
   ) => {
     this.setState({
       inquiredPetInfo: {
-        petName: petName,
-        petImage: petImage,
-        petDescription: petDescription,
-        petDiet: petDiet,
-        petStats: petStats
+        name: petName,
+        image: petImage,
+        description: petDescription,
+        diet: petDiet,
+        stats: petStats,
+        abilities: petAbilities
       },
       inquiredPetModal: true
     });
@@ -102,11 +108,7 @@ class PetManagement extends Component {
         petInfo: petInfo
       }
     );
-    console.log("THE RESULT");
-    console.log(updatedResult);
     var mainPet = updatedResult.data.chosenPet;
-    console.log('THE USER"S CHOSEN PET HERE');
-    console.log(mainPet);
 
     this.setState({
       mainPetInfo: mainPet,
@@ -145,7 +147,12 @@ class PetManagement extends Component {
           />
         )}
 
-        <Modal show={this.state.showTutorialPM} chosenImage={tutorialPMImage}>
+        <Modal
+          show={this.state.showTutorialPM}
+          chosenImage={tutorialPMImage}
+          height={"85%"}
+          width={"85%"}
+        >
           <Tutorial1PM clicked={this.tutorialModalHandler1} />
         </Modal>
 
@@ -153,6 +160,9 @@ class PetManagement extends Component {
           <Modal
             show={this.state.inquiredPetModal}
             chosenImage={fireLandsImage}
+            modalToggler={this.modalToggler}
+            height={"90%"}
+            width={"90%"}
           >
             <InquiredPetInfo
               petInfo={this.state.inquiredPetInfo}

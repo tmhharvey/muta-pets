@@ -1,18 +1,44 @@
 import React, { Component } from "react";
 import "./DefaultBottomLayout.scss";
-import { Row, Col, Progress } from "reactstrap";
+import { Row, Col, Progress, Tooltip } from "reactstrap";
+import SimpleTooltip from "../../../UI/SimpleTooltip/SimpleTooltip";
 
 class DefaultBottomLayout extends Component {
-  props = {};
+  state = {
+    tooltipOpen: false
+  };
+
+  toggle = () => {
+    this.setState({
+      tooltipOpen: !this.state.tooltipOpen
+    });
+  };
 
   render() {
+    this.toggle = this.toggle.bind(this);
     var renderedAbilities = this.props.abilities.map(ability => {
       return (
         <Col sm="4" key={ability.name}>
           <h3>{ability.name}</h3>
-          <button className="abilitiesCard" disabled={true}>
+          <div className="abilitiesCard" id={"someid" + ability.name}>
             <img src={ability.image} />
-          </button>
+          </div>
+          <SimpleTooltip placement="top" target={"someid" + ability.name}>
+            <Row>
+              <Col md="12" className="text-center">
+                <h3>{ability.name}</h3>
+              </Col>
+              <Col md="12" className="text-left">
+                <p>Description: {ability.tooltip}</p>
+              </Col>
+              <Col md="12" className="text-left">
+                <p>Damage: {ability.damage}</p>
+                <p>Mana Cost: {ability.manaCost}</p>
+                <p>Mana Type: {ability.manaType}</p>
+                <p>Cooldown: {ability.cooldown}</p>
+              </Col>
+            </Row>
+          </SimpleTooltip>
         </Col>
       );
     });

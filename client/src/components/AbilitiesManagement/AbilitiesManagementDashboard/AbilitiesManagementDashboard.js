@@ -6,6 +6,8 @@ import ItemsHandler from "../../helpers/itemsHandler.js";
 import "./AbilitiesManagementDashboard.scss";
 import Bite from "../../../assets/img/bite.png";
 import Flail from "../../../assets/img/flail.png";
+import SimpleTooltip from "../../UI/SimpleTooltip/SimpleTooltip";
+
 class AbilitiesManagementDashboard extends Component {
   state = {
     collectedPets: [],
@@ -32,6 +34,28 @@ class AbilitiesManagementDashboard extends Component {
     this.setState({
       mainPet: foundMainPet.data.mainPet
     });
+  };
+
+  chosenAbilityHandler = async (petId, ability) => {
+    const chosenAbility = await axios.post(
+      process.env.REACT_APP_BACKEND + "/pet/abilityChosen",
+      {
+        id: petId,
+        ability: ability
+      }
+    );
+
+    console.log(chosenAbility);
+    if (chosenAbility.data.status === 200) {
+      this.setState(
+        {
+          mainPet: chosenAbility.data.updatedPet
+        },
+        () => {
+          this.props.getUserInfo();
+        }
+      );
+    }
   };
 
   inventoryStateHandler = (item, index) => {
@@ -91,10 +115,34 @@ class AbilitiesManagementDashboard extends Component {
       ability => {
         return (
           <Col sm="3" key={ability.name}>
-            <h3>{ability.name}</h3>
-            <button className="abilitiesCard">
+            <h3 className="abilitiesSelectionSection__abilitiesCardTitle">
+              {ability.name}
+            </h3>
+            <div
+              className="abilitiesSelectionSection__availableAbilitiesCard"
+              onClick={() => {
+                this.chosenAbilityHandler(this.state.mainPet._id, ability);
+              }}
+              id={"someid" + ability.name}
+            >
               <img src={ability.image} />
-            </button>
+            </div>
+            <SimpleTooltip placement="bottom" target={"someid" + ability.name}>
+              <Row>
+                <Col md="12" className="text-center">
+                  <h3>{ability.name}</h3>
+                </Col>
+                <Col md="12" className="text-left">
+                  <p>Description: {ability.tooltip}</p>
+                </Col>
+                <Col md="12" className="text-left">
+                  <p>Damage: {ability.damage}</p>
+                  <p>Mana Cost: {ability.manaCost}</p>
+                  <p>Mana Type: {ability.manaType}</p>
+                  <p>Cooldown: {ability.cooldown}</p>
+                </Col>
+              </Row>
+            </SimpleTooltip>
           </Col>
         );
       }

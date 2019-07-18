@@ -4,9 +4,6 @@ const User = require("../../models/user");
 const Pet = require("../../models/pet");
 
 router.post("/useItemHunger", async (req, res) => {
-  console.log("Item route was hit");
-  console.log(req.body.id);
-
   var item = req.body.item;
   var petId = req.body.id;
 
@@ -24,9 +21,6 @@ router.post("/useItemHunger", async (req, res) => {
     );
 
     if (updatedPet.status.hunger < 0) {
-      console.log(
-        "############### THE PETS HUNGER IS COMPLETED QUENCHED #############"
-      );
       var updatedHungerZero = await Pet.findOneAndUpdate(
         petQuery,
         {
@@ -34,8 +28,6 @@ router.post("/useItemHunger", async (req, res) => {
         },
         { multi: true, new: true }
       );
-
-      console.log(updatedHungerZero);
 
       res.json({
         status: 200,
@@ -57,4 +49,106 @@ router.post("/useItemHunger", async (req, res) => {
   }
 });
 
+router.post("/abilityChosen", async (req, res) => {
+  var ability = req.body.ability;
+  var petId = req.body.id;
+
+  petQuery = { _id: petId };
+
+  //if there are 7 abilities selected,
+  //then push the most recent one selected
+  //and pop the first one selected
+
+  try {
+    var updatedPet = await Pet.findOneAndUpdate(
+      petQuery,
+      {
+        $push: {
+          abilities: ability
+        },
+        $pull: {
+          availableAbilities: ability
+        }
+      },
+      { new: true }
+    );
+
+    if (updatedPet.abilities.length >= 7) {
+      var abilitytoRemove = updatedPet.abilities[0];
+      var updatedPetWithTooManyAbilities = await Pet.findOneAndUpdate(
+        petQuery,
+        {
+          $pop: { abilities: -1 },
+          $push: {
+            abilities: ability
+          },
+          $push: {
+            availableAbilities: abilitytoRemove
+          }
+        },
+        { new: true }
+      );
+
+      res.json({
+        status: 200,
+        session: req.session,
+        updatedPet: updatedPetWithTooManyAbilities
+      });
+    } else {
+      res.json({
+        status: 200,
+        session: req.session,
+        updatedPet: updatedPet
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
+router.post("/changeMainPet", async (req, res) => {
+  var petId = req.body.petId;
+  var currentMainPetId = req.body.mainPetId;
+
+  if (petId == currentMainPetId) {
+    res.json({
+      status: 400,
+      session: req.session
+    });
+  } else {
+    changeToMainQuery = { _id: petId };
+    removeFromMainQuery = { _id: currentMainPetId };
+    try {
+      var newMainPet = await Pet.findOneAndUpdate(
+        changeToMainQuery,
+        {
+          $set: {
+            main: true
+          }
+        },
+        { new: true }
+      );
+
+      var removedFromMainPet = await Pet.findOneAndUpdate(
+        removeFromMainQuery,
+        {
+          $set: {
+            main: false
+          }
+        },
+        { new: true }
+      );
+
+      res.json({
+        status: 200,
+        session: req.session,
+        updatedPet: newMainPet
+      });
+    } catch (err) {
+      console.log(err);
+      res.send(err);
+    }
+  }
+});
 module.exports = router;

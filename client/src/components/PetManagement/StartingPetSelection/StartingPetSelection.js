@@ -24,7 +24,19 @@ class StartingPetSelection extends Component {
           Hp: 250,
           Attack: 5,
           Defense: 20
-        }
+        },
+        abilities: [
+          {
+            name: "Flail",
+            type: "attack",
+            damage: 3,
+            manaCost: 1,
+            manaType: "colorless",
+            cooldown: 0,
+            image: "/static/media/flail.c3ad8329.png",
+            tooltip: "A desperate attack that is both cheap and weak"
+          }
+        ]
       },
       {
         name: "Cloudia",
@@ -36,7 +48,19 @@ class StartingPetSelection extends Component {
           Hp: 250,
           Attack: 5,
           Defense: 20
-        }
+        },
+        abilities: [
+          {
+            name: "Flail",
+            type: "attack",
+            damage: 3,
+            manaCost: 1,
+            manaType: "colorless",
+            cooldown: 0,
+            image: "/static/media/flail.c3ad8329.png",
+            tooltip: "A desperate attack that is both cheap and weak"
+          }
+        ]
       },
       {
         name: "Furbio",
@@ -48,7 +72,19 @@ class StartingPetSelection extends Component {
           Hp: 250,
           Attack: 5,
           Defense: 20
-        }
+        },
+        abilities: [
+          {
+            name: "Flail",
+            type: "attack",
+            damage: 3,
+            manaCost: 1,
+            manaType: "colorless",
+            cooldown: 0,
+            image: "/static/media/flail.c3ad8329.png",
+            tooltip: "A desperate attack that is both cheap and weak"
+          }
+        ]
       },
       {
         name: "Natog",
@@ -60,7 +96,19 @@ class StartingPetSelection extends Component {
           Hp: 250,
           Attack: 50,
           Defense: 20
-        }
+        },
+        abilities: [
+          {
+            name: "Flail",
+            type: "attack",
+            damage: 3,
+            manaCost: 1,
+            manaType: "colorless",
+            cooldown: 0,
+            image: "/static/media/flail.c3ad8329.png",
+            tooltip: "A desperate attack that is both cheap and weak"
+          }
+        ]
       },
       {
         name: "Feepy",
@@ -72,7 +120,19 @@ class StartingPetSelection extends Component {
           Hp: 250,
           Attack: 5,
           Defense: 20
-        }
+        },
+        abilities: [
+          {
+            name: "Flail",
+            type: "attack",
+            damage: 3,
+            manaCost: 1,
+            manaType: "colorless",
+            cooldown: 0,
+            image: "/static/media/flail.c3ad8329.png",
+            tooltip: "A desperate attack that is both cheap and weak"
+          }
+        ]
       },
       {
         name: "Gyptci",
@@ -84,7 +144,19 @@ class StartingPetSelection extends Component {
           Hp: 250,
           Attack: 5,
           Defense: 20
-        }
+        },
+        abilities: [
+          {
+            name: "Flail",
+            type: "attack",
+            damage: 3,
+            manaCost: 1,
+            manaType: "colorless",
+            cooldown: 0,
+            image: "/static/media/flail.c3ad8329.png",
+            tooltip: "A desperate attack that is both cheap and weak"
+          }
+        ]
       },
       {
         name: "Blussy",
@@ -96,7 +168,19 @@ class StartingPetSelection extends Component {
           Hp: 250,
           Attack: 5,
           Defense: 20
-        }
+        },
+        abilities: [
+          {
+            name: "Flail",
+            type: "attack",
+            damage: 3,
+            manaCost: 1,
+            manaType: "colorless",
+            cooldown: 0,
+            image: "/static/media/flail.c3ad8329.png",
+            tooltip: "A desperate attack that is both cheap and weak"
+          }
+        ]
       },
       {
         name: "Borm",
@@ -108,14 +192,24 @@ class StartingPetSelection extends Component {
           Hp: 250,
           Attack: 5,
           Defense: 20
-        }
+        },
+        abilities: [
+          {
+            name: "Flail",
+            type: "attack",
+            damage: 3,
+            manaCost: 1,
+            manaType: "colorless",
+            cooldown: 0,
+            image: "/static/media/flail.c3ad8329.png",
+            tooltip: "A desperate attack that is both cheap and weak"
+          }
+        ]
       }
     ],
     selectedPetInfo: {},
     selectedPetModal: false
   };
-
-  componentDidMount = async () => {};
 
   render() {
     var renderStartingPets;
@@ -131,7 +225,8 @@ class StartingPetSelection extends Component {
                 pet.image,
                 pet.description,
                 pet.diet,
-                pet.stats
+                pet.stats,
+                pet.abilities
               );
             }}
           >

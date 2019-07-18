@@ -5,6 +5,9 @@ import axios from "axios";
 import ItemsHandler from "../../helpers/itemsHandler.js";
 import "./PetManagementDashboard.scss";
 import Bite from "../../../assets/img/bite.png";
+import fireLandsImage from "../../../assets/img/fireLandsImage.jpg";
+import InquiredPetInfo from "../InquiredPetInfo/InquiredPetInfo";
+import Modal from "../../UI/Modal/Modal";
 
 class PetManagementDashboard extends Component {
   state = {
@@ -12,12 +15,11 @@ class PetManagementDashboard extends Component {
     mainPet: "",
     inventoryItemActive: false,
     petInfoActive: true,
+    petInfoActiveModal: false,
     activeItem: null
   };
 
   componentDidMount = async () => {
-    console.log("componentDidMount Fired");
-
     this.getPetInfo();
   };
 
@@ -46,13 +48,13 @@ class PetManagementDashboard extends Component {
     if (this.state.inventoryItemActive) {
       this.setState({
         inventoryItemActive: false,
-        activeItem: null
+        activeItem: null,
+        petInfoActive: true
       });
     } else {
-      console.log(item);
-      console.log(index);
       this.setState({
         inventoryItemActive: true,
+        petInfoActive: false,
         activeItem: {
           item: item,
           index: index
@@ -68,21 +70,16 @@ class PetManagementDashboard extends Component {
       // ItemsHandler.foodItemHandler(this.state.activeItemName);
       var itemUsed = await ItemsHandler.foodItemHandler(petId, usedItem);
 
-      console.log("item route data");
-      console.log(itemUsed);
-
       var userInventory = await ItemsHandler.userInventoryUpdated(
         inventoryIndex
       );
 
-      console.log("user inventory update data");
-      console.log(userInventory);
       if (itemUsed.data.status == 200 && userInventory.data.status == 200) {
-        console.log("Item Used AND User Inventory were updated");
         this.setState(
           {
             inventoryItemActive: false,
-            activeItemName: null
+            activeItemName: null,
+            petInfoActive: true
           },
           () => {
             this.props.getUserInfo();
@@ -91,6 +88,45 @@ class PetManagementDashboard extends Component {
       }
     } else {
       return null;
+    }
+  };
+
+  petInfoToggler = selectedPet => {
+    if (this.state.petInfoActive) {
+      this.setState({
+        petInfoActiveModal: true,
+        selectedPetInformation: selectedPet
+      });
+    }
+  };
+
+  modalToggler = () => {
+    this.setState({
+      petInfoActiveModal: false
+    });
+  };
+
+  mainPetHandler = async petId => {
+    const userPets = await axios.post(
+      process.env.REACT_APP_BACKEND + "/pet/changeMainPet",
+      {
+        petId: petId,
+        mainPetId: this.state.mainPet._id
+      }
+    );
+
+    if (userPets.data.status == 200) {
+      this.setState(
+        {
+          petInfoActive: true,
+          petInfoActiveModal: false,
+          collectedPets: []
+        },
+        () => {
+          this.getPetInfo();
+          this.props.getUserInfo();
+        }
+      );
     }
   };
 
@@ -105,6 +141,7 @@ class PetManagementDashboard extends Component {
           }
           onClick={() => {
             this.itemUsedHandler(this.state.mainPet._id);
+            this.petInfoToggler(this.state.mainPet);
           }}
         >
           <h3 className="mainPetCard__title">{this.state.mainPet.name}</h3>{" "}
@@ -124,6 +161,7 @@ class PetManagementDashboard extends Component {
             }
             onClick={() => {
               this.itemUsedHandler(collectedPet._id);
+              this.petInfoToggler(collectedPet);
             }}
           >
             <h3 className="collectedPetsCard__title">{collectedPet.name}</h3>{" "}
@@ -171,6 +209,20 @@ class PetManagementDashboard extends Component {
             <Row>{renderInventory}</Row>
           </div>
         </Col>
+        {this.state.petInfoActiveModal ? (
+          <Modal
+            show={this.state.petInfoActiveModal}
+            chosenImage={fireLandsImage}
+            modalToggler={this.modalToggler}
+            height={"90%"}
+            width={"90%"}
+          >
+            <InquiredPetInfo
+              petInfo={this.state.selectedPetInformation}
+              mainPetHandler={this.mainPetHandler}
+            />
+          </Modal>
+        ) : null}
       </>
     );
   }

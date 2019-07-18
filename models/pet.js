@@ -50,7 +50,6 @@ const PetSchema = new Schema({
       }
     ]
   },
-
   availableAbilities: {
     type: Array,
     default: [

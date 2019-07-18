@@ -14,12 +14,16 @@ class Modal extends Component {
               ? "translate(-50%, -50%)"
               : "translateY(-250vh)",
             opacity: this.props.show ? "1" : "0",
-            backgroundImage: `url(${this.props.chosenImage})`
+            backgroundImage: `url(${this.props.chosenImage})`,
+            height: this.props.height,
+            width: this.props.width
           }}
         >
           <div className="Modal__gradient"> {this.props.children}</div>
 
-          {/* <p className="Modal__close">X</p> */}
+          <p className="Modal__close" onClick={() => this.props.modalToggler()}>
+            X
+          </p>
         </div>
       </>
     );
