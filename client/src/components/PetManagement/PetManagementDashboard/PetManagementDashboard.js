@@ -197,7 +197,7 @@ class PetManagementDashboard extends Component {
     return (
       <>
         <Col sm="9">
-          <Row>
+          <Row className="petManagementSection">
             {renderedMainPet} {renderCollectedPets}
           </Row>
         </Col>
