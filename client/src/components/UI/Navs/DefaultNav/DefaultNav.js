@@ -25,7 +25,7 @@ class DefaultNav extends Component {
               <Link to={`/pet-abilities`}>Abilities</Link>
             </Col>
             <Col sm="3" className="mainNav__defaultNavStyling">
-              <Link to={`/home`}>Mutate Lab</Link>
+              <Link to={`/mutate-lab`}>Mutate Lab</Link>
             </Col>
             <Col sm="3" />
           </Row>{" "}

@@ -1,72 +1,34 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
-const PetSchema = new Schema({
-  userId: {
-    type: String,
-    required: true
-  },
-  main: {
-    type: Boolean,
-    required: true
-  },
-  canBeMutated: {
-    type: Boolean,
-    required: true,
-    default: false
-  },
-  mutateId: {
-    type: String,
-    required: true,
-    default: 0
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  image: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  diet: {
-    type: String,
-    required: true
-  },
-  stats: {
-    type: Object,
-    required: true,
-    default: ""
-  },
-  status: {
-    type: Object,
-    default: { happiness: 90, energy: 90, hunger: 75 }
-  },
-  abilities: {
-    type: Array,
-    default: [
+var defaultMutatedPets = [
+  {
+    canBeMutated: false,
+    mutateId: "123123",
+    stats: {
+      Hp: 1400,
+      Attack: 250,
+      Defense: 200
+    },
+    status: {
+      happiness: 90,
+      energy: 90,
+      hunger: 55
+    },
+    abilities: [
       {
-        name: "Flail",
+        name: "FlailU",
         type: "attack",
-        damage: 3,
+        damage: 12,
         manaCost: 1,
         manaType: "colorless",
         cooldown: 0,
         image: "/static/media/flail.c3ad8329.png",
         tooltip: "A desperate attack that is both cheap and weak"
       }
-    ]
-  },
-  availableAbilities: {
-    type: Array,
-    default: [
+    ],
+    availableAbilities: [
       {
-        name: "Bite",
+        name: "BiteU",
         type: "attack",
-        damage: 12,
+        damage: 33,
         manaCost: 3,
         manaType: "colorless",
         cooldown: 0,
@@ -75,13 +37,14 @@ const PetSchema = new Schema({
         tooltip:
           "Your pet lashes out with a vicious bite, dealing a fair amount of damage!"
       }
-    ]
-  },
-
-  date: {
-    type: Date,
-    default: Date.now
+    ],
+    main: false,
+    name: "Naturmog",
+    image: "/static/media/mutationTest.d3b107a6.png",
+    description:
+      "Naturmog is a curious and lonesome beat.  Utterly loyal to his master and capable of destroying whole",
+    diet: "Meat, Brains, and Leaves"
   }
-});
+];
 
-module.exports = mongoose.model("Pet", PetSchema);
+module.exports = defaultMutatedPets;

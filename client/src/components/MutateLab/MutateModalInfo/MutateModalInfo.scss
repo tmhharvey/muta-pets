@@ -1,0 +1,42 @@
+@import "../../../assets/sass/abstract/variables.scss";
+
+.mutationPetCard {
+  height: 25rem;
+  width: 20rem;
+  border: 5px solid $color-primary;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 2rem;
+  cursor: pointer;
+  background-color: #fff;
+  &__titleName {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    color: black;
+  }
+
+  &__titleId {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    color: black;
+    width: 99%;
+  }
+  img {
+    height: 80%;
+    width: 90%;
+    margin-top: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    z-index: 1;
+  }
+  &:hover {
+    border: 5px solid gold;
+  }
+}

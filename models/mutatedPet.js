@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const PetSchema = new Schema({
+const MutatedPetSchema = new Schema({
   userId: {
     type: String,
-    required: true
+    required: true,
+    default: "n/a"
   },
   main: {
     type: Boolean,
@@ -49,9 +50,9 @@ const PetSchema = new Schema({
     type: Array,
     default: [
       {
-        name: "Flail",
+        name: "Flail2",
         type: "attack",
-        damage: 3,
+        damage: 6,
         manaCost: 1,
         manaType: "colorless",
         cooldown: 0,
@@ -64,9 +65,9 @@ const PetSchema = new Schema({
     type: Array,
     default: [
       {
-        name: "Bite",
+        name: "Bite2",
         type: "attack",
-        damage: 12,
+        damage: 24,
         manaCost: 3,
         manaType: "colorless",
         cooldown: 0,
@@ -84,4 +85,4 @@ const PetSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("Pet", PetSchema);
+module.exports = mongoose.model("MutatedPet", MutatedPetSchema);

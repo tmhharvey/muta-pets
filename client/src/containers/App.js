@@ -33,6 +33,11 @@ const AbilitiesManagement = Loadable({
   loading
 });
 
+const MutateLab = Loadable({
+  loader: () => import("../components/MutateLab/MutateLab"),
+  loading
+});
+
 const PetManagement = Loadable({
   loader: () => import("../components/PetManagement/PetManagement"),
   loading
@@ -63,6 +68,11 @@ class App extends Component {
                     exact
                     path="/pet-abilities"
                     component={withAuthContext(AbilitiesManagement)}
+                  />
+                  <ProtectedRoute
+                    exact
+                    path="/mutate-lab"
+                    component={withRouter(withAuthContext(MutateLab))}
                   />
                   <Route
                     exact
