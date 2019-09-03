@@ -144,7 +144,11 @@ router.post("/login", async (req, res) => {
         req.session.userType = foundUserEmail
           ? foundUserEmail.userType
           : foundUserName.userType;
-        console.log(`STARTED SESSION: ${req.session}`);
+        console.log(`STARTED SESSION: ${JSON.stringify(req.session)}`);
+        console.log("===== SESSION DATA =======");
+        console.log(req.session.email);
+        console.log(req.session.userName);
+        console.log(req.session.userId);
         res.json({
           status: 200,
           session: req.session,
@@ -175,6 +179,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
   req.session.destroy(err => {
     if (err) {
       res.send(err);
