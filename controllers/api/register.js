@@ -45,6 +45,7 @@ router.post("/register", async (req, res) => {
   userDbEntry.email = req.body.email;
   userDbEntry.password = hashedPassword;
   userDbEntry.userType = "U";
+  userDbEntry.avatarImage = "/static/media/defaultBoyAvatar.png";
   userDbEntry.inventory = [
     foodItemsList.starFruit,
     foodItemsList.meatHaunch,
@@ -144,6 +145,9 @@ router.post("/login", async (req, res) => {
         req.session.userType = foundUserEmail
           ? foundUserEmail.userType
           : foundUserName.userType;
+        req.session.firstPetNotSelected = foundUserEmail
+          ? foundUserEmail.firstPetNotSelected
+          : foundUserName.firstPetNotSelected;
         console.log(`STARTED SESSION: ${JSON.stringify(req.session)}`);
         console.log("===== SESSION DATA =======");
         console.log(req.session.email);
@@ -179,7 +183,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+  console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
   req.session.destroy(err => {
     if (err) {
       res.send(err);

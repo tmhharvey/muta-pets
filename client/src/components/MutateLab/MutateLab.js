@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Row, Col, Button } from "reactstrap";
 import Modal from "../UI/Modal/Modal";
 import DefaultNav from "../UI/Navs/DefaultNav/DefaultNav";
-import DefaultBottomLayout from "../UI/Footers/DefaultBottomLayout/DefaultBottomLayout";
+import PetManagementFooter from "../PetManagement/PetManagementFooter/PetManagementFooter";
 import "./MutateLab.scss";
 import MutateLabDashboard from "./MutateLabDashboard/MutateLabDashboard.js";
 import PlaceHolderPet from "../../assets/img/placeholderPet.png";
@@ -58,11 +58,11 @@ class MutateLab extends Component {
   render() {
     return (
       <>
-        <DefaultNav userName={this.state.userName} />
+        <DefaultNav userName={this.state.userName} MutateLabNavActive={true} />
         <Row className="mainContent text-center">
           <MutateLabDashboard getUserInfo={this.getUserInfo} />
         </Row>
-        <DefaultBottomLayout
+        <PetManagementFooter
           petHp={this.state.mainPetInfo.stats.Hp}
           petDefense={this.state.mainPetInfo.stats.Defense}
           petAttack={this.state.mainPetInfo.stats.Attack}

@@ -18,14 +18,46 @@ class DefaultNav extends Component {
         </Col>
         <Col sm="8 text-center">
           <Row>
-            <Col sm="3" className="mainNav__defaultNavStyling">
-              <Link to={`/home`}>Pet Management</Link>
+            <Col sm="3">
+              <Link to={`/home`}>
+                <div
+                  className={
+                    this.props.pmNavActive
+                      ? "mainNav__defaultNavStyling navActive"
+                      : "mainNav__defaultNavStyling"
+                  }
+                >
+                  Pet Management
+                </div>
+              </Link>
             </Col>
-            <Col sm="3" className="mainNav__defaultNavStyling">
-              <Link to={`/pet-abilities`}>Abilities</Link>
+            <Col sm="3">
+              <Link to={`/pet-abilities`}>
+                {" "}
+                <div
+                  className={
+                    this.props.abilitesNavActive
+                      ? "mainNav__defaultNavStyling navActive"
+                      : "mainNav__defaultNavStyling"
+                  }
+                >
+                  Abilities
+                </div>
+              </Link>
             </Col>
-            <Col sm="3" className="mainNav__defaultNavStyling">
-              <Link to={`/mutate-lab`}>Mutate Lab</Link>
+            <Col sm="3">
+              <Link to={`/mutate-lab`}>
+                {" "}
+                <div
+                  className={
+                    this.props.mutateLabNavActive
+                      ? "mainNav__defaultNavStyling navActive"
+                      : "mainNav__defaultNavStyling"
+                  }
+                >
+                  Mutate Lab
+                </div>
+              </Link>
             </Col>
             <Col sm="3" />
           </Row>{" "}

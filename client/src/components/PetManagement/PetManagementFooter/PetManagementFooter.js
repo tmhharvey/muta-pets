@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./DefaultBottomLayout.scss";
+import "./PetManagementFooter.scss";
 import { Row, Col, Progress, Tooltip } from "reactstrap";
-import SimpleTooltip from "../../../UI/SimpleTooltip/SimpleTooltip";
+import SimpleTooltip from "../../UI/SimpleTooltip/SimpleTooltip";
+import defaultBoyAvatar from "../../../assets/img/defaultBoyAvatar.png";
 
 class DefaultBottomLayout extends Component {
   state = {
@@ -48,7 +49,7 @@ class DefaultBottomLayout extends Component {
           <h1>{this.props.petName}</h1>
           <img src={this.props.petImage} />
         </Col>
-        <Col sm="3 bottomLayout__monsterStats">
+        <Col sm="4 bottomLayout__monsterStats">
           <Row className="pt-3">
             <Col sm="6">
               <h3>Level: 1</h3>
@@ -132,7 +133,12 @@ class DefaultBottomLayout extends Component {
           <hr />
           <Row>{renderedAbilities}</Row>
         </Col>
-        <Col sm="3 bottomLayout__charImage">Character Image</Col>
+        <Col sm="2">
+          <div className="bottomLayout__charImage">
+            <h2>{this.props.userName}</h2>
+            <img src={defaultBoyAvatar}></img>
+          </div>
+        </Col>
       </Row>
     );
   }

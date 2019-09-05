@@ -7,7 +7,7 @@ import fireLandsImage from "../../assets/img/fireLandsImage.jpg";
 import tutorialPMImage from "../../assets/img/introImage.jpg";
 import Tutorial1PM from "./TutorialPM/Tutorial1PM";
 import DefaultNav from "../UI/Navs/DefaultNav/DefaultNav";
-import DefaultBottomLayout from "../UI/Footers/DefaultBottomLayout/DefaultBottomLayout";
+import PetManagementFooter from "./PetManagementFooter/PetManagementFooter";
 import InquiredPetInfo from "./InquiredPetInfo/InquiredPetInfo";
 import PlaceHolderPet from "../../assets/img/placeholderPet.png";
 import "./PetManagement.scss";
@@ -17,7 +17,7 @@ import FoodList from "../helpers/foodItemsList";
 
 class PetManagement extends Component {
   state = {
-    firstPetNotSelected: true,
+    firstPetNotSelected: false,
     showTutorialPM: false,
     inquiredPetInfo: {},
     inquiredPetModal: false,
@@ -120,7 +120,7 @@ class PetManagement extends Component {
   render() {
     return (
       <>
-        <DefaultNav userName={this.state.userName} />
+        <DefaultNav userName={this.state.userName} pmNavActive={true} />
         <Row className="mainContent text-center">
           {this.state.firstPetNotSelected ? (
             <StartingPetSelection
@@ -134,7 +134,7 @@ class PetManagement extends Component {
           )}
         </Row>
         {this.state.firstPetNotSelected ? null : (
-          <DefaultBottomLayout
+          <PetManagementFooter
             petHp={this.state.mainPetInfo.stats.Hp}
             petDefense={this.state.mainPetInfo.stats.Defense}
             petAttack={this.state.mainPetInfo.stats.Attack}
@@ -144,6 +144,7 @@ class PetManagement extends Component {
             petEnergy={this.state.mainPetInfo.status.energy}
             petHappiness={this.state.mainPetInfo.status.happiness}
             abilities={this.state.mainPetInfo.abilities}
+            userName={this.state.userName}
           />
         )}
 

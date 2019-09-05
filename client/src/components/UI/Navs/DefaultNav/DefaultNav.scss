@@ -24,11 +24,10 @@
   }
   &__defaultNavStyling {
     padding: 1.3rem 0rem 1.3rem 0.5rem;
-    & a {
-      font-size: 1.8rem;
-      color: $color-off-white;
-      font-family: "RPGAwesome";
-    }
+
+    font-size: 1.8rem;
+    color: $color-off-white;
+    font-family: "RPGAwesome";
 
     &:hover {
       background-color: $color-primary;
@@ -55,4 +54,8 @@
       cursor: pointer;
     }
   }
+}
+
+.navActive {
+  background-color: $color-primary;
 }

@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Row, Col, Button } from "reactstrap";
 import Modal from "../UI/Modal/Modal";
 import DefaultNav from "../UI/Navs/DefaultNav/DefaultNav";
-import DefaultBottomLayout from "../UI/Footers/DefaultBottomLayout/DefaultBottomLayout";
+import PetManagementFooter from "../PetManagement/PetManagementFooter/PetManagementFooter";
 import "./AbilitiesManagement.scss";
 import AbilitiesManagementDashboard from "./AbilitiesManagementDashboard/AbilitiesManagementDashboard";
 import PlaceHolderPet from "../../assets/img/placeholderPet.png";
@@ -66,14 +66,14 @@ class AbilitiesManagement extends Component {
   render() {
     return (
       <>
-        <DefaultNav userName={this.state.userName} />
+        <DefaultNav userName={this.state.userName} abilitesNavActive={true} />
         <Row className="mainContent text-center">
           <AbilitiesManagementDashboard
             inventory={this.state.inventory}
             getUserInfo={this.getUserInfo}
           />
         </Row>
-        <DefaultBottomLayout
+        <PetManagementFooter
           petHp={this.state.mainPetInfo.stats.Hp}
           petDefense={this.state.mainPetInfo.stats.Defense}
           petAttack={this.state.mainPetInfo.stats.Attack}

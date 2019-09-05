@@ -1,4 +1,4 @@
-@import "../../../../assets/sass/abstract/variables.scss";
+@import "../../../assets/sass/abstract/variables.scss";
 
 .bottomLayout {
   border: 1px solid #ccc;
@@ -82,13 +82,26 @@
   &__charImage {
     border: 1px solid pink;
     border: 10px solid transparent;
-    padding: 5px;
+    height: 100%;
+    width: 100%;
     -webkit-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
       30 round; /* Safari 3.1-5 */
     -o-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
       30 round; /* Opera 11-12.1 */
     border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
       30 round;
+    & h2 {
+      color: black;
+      font-weight: 400;
+    }
+    & img {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translate(-50%);
+      height: 70%;
+      width: 60;
+    }
   }
   .progress {
     font-size: 1.1rem;
