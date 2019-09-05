@@ -40,8 +40,9 @@ class Register extends Component {
     console.log("we're about to post Register to the server");
 
     try {
+      console.log(process.env.REACT_APP_BACKEND)
       const registerResponse = await axios.post(
-        process.env.REACT_APP_BACKEND + "auth/register",
+        process.env.REACT_APP_BACKEND + "/auth/register",
         {
           email: email,
           password: password,

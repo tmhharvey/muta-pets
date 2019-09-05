@@ -44,19 +44,18 @@ class Login extends Component {
     console.log("logging in...");
     try {
       console.log("we're about to post login to the server");
-      console.log('======')
-      console.log(process.env.REACT_APP_BACKEND);
-      console.log('===========');
+
+      console.log(process.env.REACT_APP_BACKEND)
 
       const loginResponse = await axios.post(
-        process.env.REACT_APP_BACKEND + "auth/login",
+        process.env.REACT_APP_BACKEND + "/auth/login",
         {
           emailOrUserName: emailOrUserName,
           password: password,
           userType: "U"
         }
       );
-
+        console.log("The login response is...");
       console.log(loginResponse);
 
       // If a successful response...

@@ -69,6 +69,8 @@ class AuthContextProvider extends Component {
   successfulLogin = sessionData => {
     localStorage.setItem("authenticated", true);
     const homePathName = "/home";
+    console.log('SESSIO DATA PASSED ON SUCCESSFUL LOGIN');
+    console.log(sessionData)
 
     this.setState(
       {
@@ -76,6 +78,8 @@ class AuthContextProvider extends Component {
         session: sessionData
       },
       () => {
+        console.log('CONTEXT SESSION DATA');
+        console.log(this.state.session);
         this.props.history.push(homePathName);
       }
     );

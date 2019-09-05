@@ -16,11 +16,16 @@ const MutatedPet = require("../../models/mutatedPet");
 
 router.get("/information", async (req, res) => {
   console.log("information route hit");
+  console.log(req.body);
+  console.log(req.session);
+  console.log(req.session.email)
 
   var userToFind = req.session.email;
 
   const userQuery = { email: userToFind };
   const petQuery = { main: true, userId: req.session.userId };
+  console.log (userQuery);
+  console.log(petQuery);
 
   try {
     var foundUser = await User.findOne(userQuery);
