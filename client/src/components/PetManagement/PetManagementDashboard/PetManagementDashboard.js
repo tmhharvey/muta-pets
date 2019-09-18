@@ -134,18 +134,22 @@ class PetManagementDashboard extends Component {
     var renderedMainPet = (
       <Col md="3" className="">
         <div
-          className={
-            this.state.inventoryItemActive
-              ? "mainPetCard inventoryActive"
-              : "mainPetCard"
-          }
+          className="mainPetPanel"
           onClick={() => {
             this.itemUsedHandler(this.state.mainPet._id);
             this.petInfoToggler(this.state.mainPet);
           }}
         >
-          <h3 className="mainPetCard__title">{this.state.mainPet.name}</h3>{" "}
-          <img src={this.state.mainPet.image} />
+          <div
+            className={
+              this.state.inventoryItemActive
+                ? "mainPetPanel__card inventoryActive"
+                : "mainPetPanel__card"
+            }
+          >
+            <h3 className="mainPetPanel__title">{this.state.mainPet.name}</h3>
+            <img src={this.state.mainPet.image} />
+          </div>
         </div>
       </Col>
     );
@@ -154,18 +158,22 @@ class PetManagementDashboard extends Component {
       return (
         <Col md="3" className="" key={collectedPet._id}>
           <div
-            className={
-              this.state.inventoryItemActive
-                ? "collectedPetsCard inventoryActive"
-                : "collectedPetsCard"
-            }
+            className="collectedPetPanel"
             onClick={() => {
               this.itemUsedHandler(collectedPet._id);
               this.petInfoToggler(collectedPet);
             }}
           >
-            <h3 className="collectedPetsCard__title">{collectedPet.name}</h3>{" "}
-            <img src={collectedPet.image} />
+            <div
+              className={
+                this.state.inventoryItemActive
+                  ? "collectedPetPanel__card inventoryActive"
+                  : "collectedPetPanel__card"
+              }
+            >
+              <h3 className="collectedPetPanel__title">{collectedPet.name}</h3>{" "}
+              <img src={collectedPet.image} />
+            </div>
           </div>
         </Col>
       );

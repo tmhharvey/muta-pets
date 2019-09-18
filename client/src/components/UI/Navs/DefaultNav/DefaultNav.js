@@ -19,56 +19,62 @@ class DefaultNav extends Component {
         <Col sm="8 text-center">
           <Row>
             <Col sm="3">
-              <Link to={`/home`}>
-                <div
-                  className={
-                    this.props.pmNavActive
-                      ? "mainNav__defaultNavStyling navActive"
-                      : "mainNav__defaultNavStyling"
-                  }
-                >
-                  Pet Management
-                </div>
-              </Link>
+              <div className="mainNav__defaultNavStyling">
+                <Link to={`/home`}>
+                  <div
+                    className={
+                      this.props.pmNavActive
+                        ? "mainNav__linkItems navActive"
+                        : "mainNav__linkItems"
+                    }
+                  >
+                    Pet Management
+                  </div>
+                </Link>
+              </div>
             </Col>
             <Col sm="3">
-              <Link to={`/pet-abilities`}>
-                {" "}
-                <div
-                  className={
-                    this.props.abilitesNavActive
-                      ? "mainNav__defaultNavStyling navActive"
-                      : "mainNav__defaultNavStyling"
-                  }
-                >
-                  Abilities
-                </div>
-              </Link>
+              <div className="mainNav__defaultNavStyling">
+                <Link to={`/pet-abilities`}>
+                  {" "}
+                  <div
+                    className={
+                      this.props.abilitesNavActive
+                        ? "mainNav__linkItems navActive"
+                        : "mainNav__linkItems"
+                    }
+                  >
+                    Abilities
+                  </div>
+                </Link>
+              </div>
             </Col>
             <Col sm="3">
-              <Link to={`/mutate-lab`}>
-                {" "}
-                <div
-                  className={
-                    this.props.mutateLabNavActive
-                      ? "mainNav__defaultNavStyling navActive"
-                      : "mainNav__defaultNavStyling"
-                  }
-                >
-                  Mutate Lab
-                </div>
-              </Link>
+              <div className="mainNav__defaultNavStyling">
+                <Link to={`/mutate-lab`}>
+                  {" "}
+                  <div
+                    className={
+                      this.props.mutateLabNavActive
+                        ? "mainNav__linkItems navActive"
+                        : "mainNav__linkItems"
+                    }
+                  >
+                    Mutate Lab
+                  </div>
+                </Link>
+              </div>
             </Col>
             <Col sm="3" />
           </Row>{" "}
         </Col>
         <Col sm="2" className="mainNav__avatar">
-          <Row>
+          {/* <Row>
             <Col sm="11">
               <Link to={`/home`}>Contestant: {this.props.userName}</Link>
             </Col>
-            <Col sm="1"> {/* <img src={DefaultBoyAvatar} /> */}</Col>
-          </Row>
+            <Col sm="1"> </Col>
+          </Row> */}
         </Col>
       </Row>
     );

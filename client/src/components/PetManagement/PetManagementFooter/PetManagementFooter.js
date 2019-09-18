@@ -20,7 +20,7 @@ class DefaultBottomLayout extends Component {
     var renderedAbilities = this.props.abilities.map(ability => {
       return (
         <Col sm="4" key={ability.name}>
-          <h3>{ability.name}</h3>
+          <h3 className="abilityTitle">{ability.name}</h3>
           <div className="abilitiesCard" id={"someid" + ability.name}>
             <img src={ability.image} />
           </div>
@@ -129,8 +129,8 @@ class DefaultBottomLayout extends Component {
           </Row>
         </Col>
         <Col sm="4 bottomLayout__content">
-          <h4>Abilities</h4>
-          <hr />
+          <h2>Abilities</h2>
+
           <Row>{renderedAbilities}</Row>
         </Col>
         <Col sm="2">

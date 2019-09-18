@@ -58,7 +58,7 @@ class MutateLab extends Component {
   render() {
     return (
       <>
-        <DefaultNav userName={this.state.userName} MutateLabNavActive={true} />
+        <DefaultNav userName={this.state.userName} mutateLabNavActive={true} />
         <Row className="mainContent text-center">
           <MutateLabDashboard getUserInfo={this.getUserInfo} />
         </Row>

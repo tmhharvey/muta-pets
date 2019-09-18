@@ -1,20 +1,19 @@
 @import "../../../assets/sass/abstract/variables.scss";
 
 .bottomLayout {
-  border: 1px solid #ccc;
   height: 28%;
   background-color: $color-white;
   &__monsterImage {
     height: 100%;
     width: 100%;
-    border: 10px solid transparent;
+    border: 3px outset $color-tertiary-dark;
     padding: 15px;
-    -webkit-border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
-      30 round; /* Safari 3.1-5 */
-    -o-border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
-      30 round; /* Opera 11-12.1 */
-    border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
-      30 round;
+    // -webkit-border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
+    //   30 round; /* Safari 3.1-5 */
+    // -o-border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
+    //   30 round; /* Opera 11-12.1 */
+    // border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
+    //   30 round;
     & h1 {
       color: black;
       font-size: 2rem;
@@ -28,28 +27,29 @@
     }
   }
   &__monsterStats {
-    background-color: $color-primary-light;
+    background-color: $color-tertiary-light;
 
-    border: 10px solid transparent;
+    border: 4px solid $color-tertiary;
     padding: 5px;
-    -webkit-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round; /* Safari 3.1-5 */
-    -o-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round; /* Opera 11-12.1 */
-    border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round;
+
     & h1 {
       font-size: 2rem;
       // padding-top: 0.5rem;
-      color: black;
+      color: $color-off-white;
       font-weight: bolder;
     }
     & h3 {
       font-size: 1.6rem;
       // padding-top: 0.5rem;
-      color: $color-grey-dark-3;
+      color: $color-off-white;
       margin-bottom: 1rem;
       font-weight: bolder;
+    }
+
+    & p {
+      font-size: 1.1rem;
+      font-weight: bolder;
+      color: $color-tertiary-dark;
     }
 
     &--statusBars {
@@ -57,39 +57,44 @@
       font-size: 1.2rem;
       padding-left: 2rem;
       padding-right: 2rem;
+      color: $color-tertiary-dark;
       & p {
         text-align: left;
         font-weight: bolder;
         margin-bottom: 0.2rem;
+        color: $color-tertiary-dark;
       }
     }
   }
   &__content {
-    background-color: $color-primary-light;
-    border: 10px solid transparent;
+    background-color: $color-tertiary-light;
+    border-top: 4px solid $color-tertiary;
+    border-right: 4px solid $color-tertiary;
+    border-bottom: 4px solid $color-tertiary;
     padding: 5px;
-    -webkit-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round; /* Safari 3.1-5 */
-    -o-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round; /* Opera 11-12.1 */
-    border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round;
+    // -webkit-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
+    //   30 round; /* Safari 3.1-5 */
+    // -o-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
+    //   30 round; /* Opera 11-12.1 */
+    // border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
+    //   30 round;
 
-    & h4 {
-      color: black;
+    & h2 {
+      color: $color-off-white;
+      font-weight: bolder;
+      margin-bottom: 1.2rem;
     }
   }
   &__charImage {
-    border: 1px solid pink;
-    border: 10px solid transparent;
+    border: 5px solid $color-tertiary;
     height: 100%;
     width: 100%;
-    -webkit-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round; /* Safari 3.1-5 */
-    -o-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round; /* Opera 11-12.1 */
-    border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-      30 round;
+    // -webkit-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
+    //   30 round; /* Safari 3.1-5 */
+    // -o-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
+    //   30 round; /* Opera 11-12.1 */
+    // border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
+    //   30 round;
     & h2 {
       color: black;
       font-weight: 400;
@@ -126,6 +131,7 @@
     color: #ccc;
     // cursor: not-allowed;
   }
+
   & img {
     height: 90%;
     height: 90%;
@@ -148,4 +154,9 @@
     border-radius: 8px;
     font-weight: bolder;
   }
+}
+
+.abilityTitle {
+  color: $color-tertiary-dark;
+  font-weight: bold;
 }
