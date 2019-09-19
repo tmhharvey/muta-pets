@@ -7,7 +7,7 @@
   &__mainPetCard {
     height: 80%;
     width: 80%;
-    border: 5px solid gold;
+    border: 3px outset $color-primary;
     margin: 0 auto;
     position: relative;
 
@@ -18,10 +18,11 @@
     &__title {
       position: absolute;
       left: 50%;
-      top: 2%;
-      font-weight: bold;
+      top: 4%;
+      font-weight: bolder;
       transform: translate(-50%, -50%);
-      color: black;
+      color: $color-primary;
+      font-size: 2rem;
     }
     img {
       height: 90%;
@@ -33,20 +34,22 @@
       z-index: 1;
     }
     &:hover {
-      background-color: gold;
-      color: #fff !important;
+      h3 {
+        color: $color-primary-light;
+      }
     }
   }
 
   &__title {
     & h2 {
-      color: black;
+      color: $color-primary-dark;
       font-size: 2rem;
+      font-weight: bold;
     }
   }
 
   &__abilitiesCardTitle {
-    color: black;
+    color: $color-primary;
   }
 
   &__availableAbilitiesCard {
@@ -88,47 +91,6 @@
       padding: 2.1rem 0.3rem;
       border-radius: 8px;
       font-weight: bolder;
-    }
-  }
-}
-
-.inventorySection {
-  height: 100%;
-  border-left: 4px solid $color-primary;
-
-  &__title {
-    font-size: 2rem;
-    text-align: center;
-    color: $color-tertiary;
-    font-weight: 900;
-  }
-
-  &__inventoryCard {
-    height: 7.5rem;
-    width: 7.5rem;
-    padding: 0.5rem 0.2rem;
-    margin: 1rem auto;
-    position: relative;
-    cursor: pointer;
-    background-color: $color-tertiary;
-    border: outset 5px darken(#b5651d, 15%);
-
-    &:hover {
-      background-color: $color-tertiary-light;
-    }
-
-    & img {
-      height: 90%;
-      height: 90%;
-    }
-    &__itemUses {
-      position: absolute;
-      top: -7%;
-      right: 7%;
-      font-size: 1.4rem;
-      color: $color-off-white;
-      border-radius: 8px;
-      font-weight: 900;
     }
   }
 }

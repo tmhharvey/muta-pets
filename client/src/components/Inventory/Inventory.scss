@@ -1,0 +1,55 @@
+@import "../../assets/sass/base/base";
+@import "../../assets/sass/base/typography";
+@import "../../assets/sass/abstract/variables.scss";
+
+.inventorySection {
+  height: 100%;
+  border-left: 4px solid $color-tertiary;
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    color: $color-tertiary;
+    font-weight: 900;
+  }
+
+  &__itemTitle {
+    font-size: 1.2rem;
+    text-align: center;
+    color: $color-tertiary;
+    font-weight: bold;
+  }
+
+  &__inventoryCard {
+    height: 7.5rem;
+    width: 7.5rem;
+    padding: 0.5rem 0.2rem;
+    margin: 1rem auto;
+    position: relative;
+    cursor: pointer;
+    background-color: $color-tertiary;
+    border: outset 5px $color-tertiary-dark;
+
+    &:hover {
+      background-color: $color-tertiary-light;
+    }
+
+    & img {
+      height: 90%;
+      height: 90%;
+    }
+    &__itemUses {
+      position: absolute;
+      top: -7%;
+      right: 7%;
+      font-size: 1.4rem;
+      color: $color-off-white;
+      border-radius: 8px;
+      font-weight: 900;
+    }
+  }
+}
+
+.inventoryActive {
+  border: 5px solid #00ff00;
+}

@@ -1,0 +1,52 @@
+@import "../../../../assets/sass/abstract/variables.scss";
+
+.monsterStats {
+  background-color: $color-primary-light;
+
+  border: 4px solid $color-primary;
+  padding: 0.5rem;
+  height: 100%;
+
+  &__info {
+    border-right: 3px solid $color-primary-dark;
+    height: 115%;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    & h1 {
+      font-size: 2rem;
+      // padding-top: 0.5rem;
+      color: $color-off-white;
+      font-weight: bolder;
+    }
+    & h3 {
+      font-size: 1.6rem;
+      // padding-top: 0.5rem;
+      color: $color-off-white;
+      font-weight: bolder;
+    }
+
+    & p {
+      font-size: 1.2rem;
+      font-weight: bolder;
+      color: $color-off-white;
+    }
+
+    &__data {
+      background-color: $color-primary-dark;
+      border-radius: 4px;
+    }
+  }
+
+  &__statusBars {
+    width: 90%;
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+    color: $color-primary-dark;
+    & p {
+      text-align: left;
+      font-weight: bolder;
+      margin-bottom: 0.2rem;
+      color: $color-primary-dark;
+    }
+  }
+}

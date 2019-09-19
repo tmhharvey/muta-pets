@@ -6,16 +6,11 @@
   &__monsterImage {
     height: 100%;
     width: 100%;
-    border: 3px outset $color-tertiary-dark;
+    border: 3px outset $color-primary-dark;
     padding: 15px;
-    // -webkit-border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
-    //   30 round; /* Safari 3.1-5 */
-    // -o-border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
-    //   30 round; /* Opera 11-12.1 */
-    // border-image: url("https://img1.picmix.com/output/stamp/normal/6/0/0/2/492006_22716.png")
-    //   30 round;
+
     & h1 {
-      color: black;
+      color: $color-primary;
       font-size: 2rem;
     }
     & img {
@@ -26,58 +21,13 @@
       cursor: pointer;
     }
   }
-  &__monsterStats {
-    background-color: $color-tertiary-light;
 
-    border: 4px solid $color-tertiary;
+  &__abilityContent {
+    background-color: $color-primary-light;
+    border-top: 4px solid $color-primary;
+    border-right: 4px solid $color-primary;
+    border-bottom: 4px solid $color-primary;
     padding: 5px;
-
-    & h1 {
-      font-size: 2rem;
-      // padding-top: 0.5rem;
-      color: $color-off-white;
-      font-weight: bolder;
-    }
-    & h3 {
-      font-size: 1.6rem;
-      // padding-top: 0.5rem;
-      color: $color-off-white;
-      margin-bottom: 1rem;
-      font-weight: bolder;
-    }
-
-    & p {
-      font-size: 1.1rem;
-      font-weight: bolder;
-      color: $color-tertiary-dark;
-    }
-
-    &--statusBars {
-      width: 90%;
-      font-size: 1.2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      color: $color-tertiary-dark;
-      & p {
-        text-align: left;
-        font-weight: bolder;
-        margin-bottom: 0.2rem;
-        color: $color-tertiary-dark;
-      }
-    }
-  }
-  &__content {
-    background-color: $color-tertiary-light;
-    border-top: 4px solid $color-tertiary;
-    border-right: 4px solid $color-tertiary;
-    border-bottom: 4px solid $color-tertiary;
-    padding: 5px;
-    // -webkit-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-    //   30 round; /* Safari 3.1-5 */
-    // -o-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-    //   30 round; /* Opera 11-12.1 */
-    // border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-    //   30 round;
 
     & h2 {
       color: $color-off-white;
@@ -86,17 +36,12 @@
     }
   }
   &__charImage {
-    border: 5px solid $color-tertiary;
+    border: 5px solid $color-primary;
     height: 100%;
     width: 100%;
-    // -webkit-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-    //   30 round; /* Safari 3.1-5 */
-    // -o-border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-    //   30 round; /* Opera 11-12.1 */
-    // border-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/4dbd4ff6-0bed-4587-99c0-8a54f3b21988/d6kciqb-249f9bd8-595c-4c0b-81ff-678e6c52ac5e.png)
-    //   30 round;
+
     & h2 {
-      color: black;
+      color: $color-primary;
       font-weight: 400;
     }
     & img {
@@ -111,52 +56,4 @@
   .progress {
     font-size: 1.1rem;
   }
-}
-
-.abilitiesCard {
-  height: 6rem;
-  width: 6rem;
-  padding: 0.5rem 0.2rem;
-  margin: 1rem auto;
-  position: relative;
-  cursor: pointer;
-  background-color: #ccc;
-  border: outset 5px darken(#b5651d, 15%);
-  &:hover {
-    background-color: lighten(#ccc, 25%);
-  }
-  &:disabled {
-    background-color: #ac9980;
-    border: 1px solid #7e7365;
-    color: #ccc;
-    // cursor: not-allowed;
-  }
-
-  & img {
-    height: 90%;
-    height: 90%;
-  }
-  &--cooldown {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    font-size: 1.2rem;
-    transform: translate(-50%, -50%);
-    color: #ffc300;
-    background: linear-gradient(
-      to right bottom,
-      rgba(#000, 0.8),
-      rgba(#323232, 0.8)
-    );
-    padding: 2.1rem 0.3rem;
-    border-radius: 8px;
-    font-weight: bolder;
-  }
-}
-
-.abilityTitle {
-  color: $color-tertiary-dark;
-  font-weight: bold;
 }

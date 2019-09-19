@@ -7,6 +7,7 @@ import "./AbilitiesManagementDashboard.scss";
 import Bite from "../../../assets/img/bite.png";
 import Flail from "../../../assets/img/flail.png";
 import SimpleTooltip from "../../UI/SimpleTooltip/SimpleTooltip";
+import Inventory from "../../Inventory/Inventory";
 
 class AbilitiesManagementDashboard extends Component {
   state = {
@@ -151,7 +152,7 @@ class AbilitiesManagementDashboard extends Component {
     var renderInventory = this.props.inventory.map((itemInfo, Index) => {
       return (
         <Col sm="4" key={itemInfo.name + itemInfo.defaultCount + Index}>
-          <p> {itemInfo.name} </p>
+          <p className="inventorySection__itemTitle"> {itemInfo.name} </p>
           <div
             className={
               this.state.inventoryItemActive
@@ -186,7 +187,7 @@ class AbilitiesManagementDashboard extends Component {
                   this.itemUsedHandler(this.state.mainPet._id);
                 }}
               >
-                <h3 className="mainPetCard__title">
+                <h3 className="abilitiesSelectionSection__mainPetCard__title">
                   {this.state.mainPet.name}
                 </h3>{" "}
                 <img src={this.state.mainPet.image} />
@@ -201,14 +202,11 @@ class AbilitiesManagementDashboard extends Component {
             </Col>
           </Row>
         </Col>
-        <Col sm="3">
-          <div className="inventorySection">
-            {" "}
-            <h2 className="inventorySection__title">Inventory</h2>
-            <hr />
-            <Row>{renderInventory}</Row>
-          </div>
-        </Col>
+
+        <Inventory
+          inventory={this.props.inventory}
+          inventoryStateHandler={this.inventoryStateHandler}
+        ></Inventory>
       </>
     );
   }

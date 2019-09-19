@@ -18,6 +18,7 @@ class DefaultNav extends Component {
         </Col>
         <Col sm="8 text-center">
           <Row>
+            <Col sm="1" />
             <Col sm="3">
               <div className="mainNav__defaultNavStyling">
                 <Link to={`/home`}>
@@ -65,7 +66,7 @@ class DefaultNav extends Component {
                 </Link>
               </div>
             </Col>
-            <Col sm="3" />
+            <Col sm="2" />
           </Row>{" "}
         </Col>
         <Col sm="2" className="mainNav__avatar">

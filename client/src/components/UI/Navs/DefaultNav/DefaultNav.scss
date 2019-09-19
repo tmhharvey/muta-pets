@@ -1,7 +1,7 @@
 @import "../../../../assets/sass/abstract/variables.scss";
 
 .mainNav {
-  background-color: $color-tertiary;
+  background-color: $color-primary;
   height: 7vh;
   color: $color-off-white;
   &__map {
@@ -15,11 +15,18 @@
       font-size: 1.8rem;
       color: $color-off-white;
       font-family: "RPGAwesome";
+      &:hover {
+        color: $color-black;
+        font-weight: 600;
+      }
     }
 
     &:hover {
-      background-color: $color-tertiary-light;
+      background-color: $color-secondary-dark;
+      color: $color-black;
+      font-weight: 600;
       cursor: pointer;
+      border-radius: 0 12px 12px 0;
     }
   }
   &__defaultNavStyling {
@@ -36,7 +43,9 @@
     padding: 0.5rem 0rem;
 
     &:hover {
-      background-color: $color-tertiary-light;
+      background-color: $color-secondary-dark;
+      color: $color-black;
+      font-weight: 600;
     }
   }
 
@@ -62,5 +71,7 @@
 }
 
 .navActive {
-  background-color: $color-tertiary-light;
+  background-color: $color-secondary-dark;
+  color: $color-black;
+  font-weight: 600;
 }

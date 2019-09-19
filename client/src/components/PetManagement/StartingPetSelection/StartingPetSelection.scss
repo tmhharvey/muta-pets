@@ -5,7 +5,7 @@
 .selectPetCard {
   height: 22rem;
   width: 17rem;
-  border: 4px solid $color-tertiary;
+  border: 4px solid $color-primary;
   margin: 0 auto;
   position: relative;
 
@@ -31,7 +31,7 @@
     z-index: 1;
   }
   &:hover {
-    background-color: $color-tertiary;
+    background-color: $color-primary;
     color: #fff !important;
   }
 }

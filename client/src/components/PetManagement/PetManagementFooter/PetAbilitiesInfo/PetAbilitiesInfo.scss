@@ -1,0 +1,49 @@
+@import "../../../../assets/sass/abstract/variables.scss";
+
+.abilitiesCard {
+  height: 6rem;
+  width: 6rem;
+  padding: 0.5rem 0.2rem;
+  margin: 1rem auto;
+  position: relative;
+  cursor: pointer;
+  background-color: #ccc;
+  border: outset 5px $color-primary-dark;
+  &:hover {
+    background-color: lighten(#ccc, 25%);
+  }
+  &:disabled {
+    background-color: #ac9980;
+    border: 1px solid #7e7365;
+    color: #ccc;
+    // cursor: not-allowed;
+  }
+
+  & img {
+    height: 90%;
+    height: 90%;
+  }
+  &__cooldown {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    font-size: 1.2rem;
+    transform: translate(-50%, -50%);
+    color: #ffc300;
+    background: linear-gradient(
+      to right bottom,
+      rgba(#000, 0.8),
+      rgba(#323232, 0.8)
+    );
+    padding: 2.1rem 0.3rem;
+    border-radius: 8px;
+    font-weight: bolder;
+  }
+}
+
+.abilityTitle {
+  color: $color-primary-dark;
+  font-weight: bold;
+}

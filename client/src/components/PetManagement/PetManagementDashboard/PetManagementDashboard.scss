@@ -18,16 +18,18 @@
     margin: 0 auto;
     height: 80%;
     width: 80%;
+    max-height: 25rem;
+    max-width: 20rem;
     border: 3px outset $color-primary;
     border-radius: $default-border-radius;
     box-shadow: 4px 8px 7px #888888;
     & h3 {
-      color: $color-tertiary;
+      color: $color-primary;
     }
 
     &:hover {
       h3 {
-        color: $color-tertiary-light;
+        color: $color-primary-light;
       }
     }
   }
@@ -43,6 +45,8 @@
   img {
     height: 80%;
     width: 80%;
+    max-height: 20rem;
+    max-width: 20rem;
     margin-top: 15%;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
@@ -57,7 +61,7 @@
   margin: 0 auto;
   cursor: pointer;
   & h3 {
-    color: $color-tertiary;
+    color: $color-primary;
   }
 
   &__card {
@@ -68,7 +72,7 @@
     border-radius: $default-border-radius;
     &:hover {
       h3 {
-        color: $color-tertiary-light;
+        color: $color-primary-light;
       }
     }
   }
@@ -88,47 +92,6 @@
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
     z-index: 1;
-  }
-}
-
-.inventorySection {
-  height: 100%;
-  border-left: 4px solid $color-primary;
-
-  &__title {
-    font-size: 2rem;
-    text-align: center;
-    color: $color-tertiary;
-    font-weight: 900;
-  }
-
-  &__inventoryCard {
-    height: 7.5rem;
-    width: 7.5rem;
-    padding: 0.5rem 0.2rem;
-    margin: 1rem auto;
-    position: relative;
-    cursor: pointer;
-    background-color: $color-tertiary;
-    border: outset 5px darken(#b5651d, 15%);
-
-    &:hover {
-      background-color: $color-tertiary-light;
-    }
-
-    & img {
-      height: 90%;
-      height: 90%;
-    }
-    &__itemUses {
-      position: absolute;
-      top: -7%;
-      right: 7%;
-      font-size: 1.4rem;
-      color: $color-off-white;
-      border-radius: 8px;
-      font-weight: 900;
-    }
   }
 }
 

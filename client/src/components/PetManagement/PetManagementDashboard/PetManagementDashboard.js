@@ -8,6 +8,7 @@ import Bite from "../../../assets/img/bite.png";
 import fireLandsImage from "../../../assets/img/fireLandsImage.jpg";
 import InquiredPetInfo from "../InquiredPetInfo/InquiredPetInfo";
 import Modal from "../../UI/Modal/Modal";
+import Inventory from "../../Inventory/Inventory";
 
 class PetManagementDashboard extends Component {
   state = {
@@ -179,29 +180,6 @@ class PetManagementDashboard extends Component {
       );
     });
 
-    var renderInventory = this.props.inventory.map((itemInfo, Index) => {
-      return (
-        <Col sm="4" key={itemInfo.name + itemInfo.defaultCount + Index}>
-          <p> {itemInfo.name} </p>
-          <div
-            className={
-              this.state.inventoryItemActive
-                ? "inventorySection__inventoryCard inventoryActive"
-                : "inventorySection__inventoryCard"
-            }
-            onClick={() => {
-              this.inventoryStateHandler(itemInfo, Index);
-            }}
-          >
-            <p className="inventorySection__inventoryCard__itemUses">
-              {itemInfo.defaultCount}
-            </p>
-            <img src={itemInfo.image} />
-          </div>
-        </Col>
-      );
-    });
-
     return (
       <>
         <Col sm="9">
@@ -209,14 +187,10 @@ class PetManagementDashboard extends Component {
             {renderedMainPet} {renderCollectedPets}
           </Row>
         </Col>
-        <Col sm="3">
-          <div className="inventorySection">
-            {" "}
-            <h2 className="inventorySection__title">Inventory</h2>
-            <hr />
-            <Row>{renderInventory}</Row>
-          </div>
-        </Col>
+        <Inventory
+          inventory={this.props.inventory}
+          inventoryStateHandler={this.inventoryStateHandler}
+        ></Inventory>
         {this.state.petInfoActiveModal ? (
           <Modal
             show={this.state.petInfoActiveModal}

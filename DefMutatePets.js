@@ -42,7 +42,7 @@ var defaultMutatedPets = [
     name: "Naturmog",
     image: "/static/media/mutationTest.d3b107a6.png",
     description:
-      "Naturmog is a curious and lonesome beat.  Utterly loyal to his master and capable of destroying whole",
+      "Naturmog is a curious and lonesome beast.  Utterly loyal to his master and capable of destroying whole",
     diet: "Meat, Brains, and Leaves"
   }
 ];
