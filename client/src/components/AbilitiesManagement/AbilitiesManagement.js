@@ -74,15 +74,8 @@ class AbilitiesManagement extends Component {
           />
         </Row>
         <PetManagementFooter
-          petHp={this.state.mainPetInfo.stats.Hp}
-          petDefense={this.state.mainPetInfo.stats.Defense}
-          petAttack={this.state.mainPetInfo.stats.Attack}
-          petImage={this.state.mainPetInfo.image}
-          petName={this.state.mainPetInfo.name}
-          petHunger={this.state.mainPetInfo.status.hunger}
-          petEnergy={this.state.mainPetInfo.status.energy}
-          petHappiness={this.state.mainPetInfo.status.happiness}
-          abilities={this.state.mainPetInfo.abilities}
+          mainPetInfo={this.state.mainPetInfo}
+          userName={this.state.userName}
         />
       </>
     );

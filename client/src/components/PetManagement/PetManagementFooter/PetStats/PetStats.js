@@ -5,6 +5,13 @@ import "./PetStats.scss";
 class PetStats extends Component {
   state = {};
   render() {
+    const {
+      mainPetInfo: {
+        stats: { Hp, Attack, Defense },
+        status: { happiness, energy, hunger }
+      }
+    } = this.props;
+
     return (
       <div className="monsterStats">
         <Row className="pt-3">
@@ -23,23 +30,19 @@ class PetStats extends Component {
                 <p>HEALTH:</p>
               </Col>
               <Col sm="6" className="pt-1">
-                <p className="monsterStats__info__data">{this.props.petHp}</p>
+                <p className="monsterStats__info__data">{Hp}</p>
               </Col>
               <Col sm="6" className="pt-1">
                 <p>ATTACK:</p>
               </Col>
               <Col sm="6" className="pt-1">
-                <p className="monsterStats__info__data">
-                  {this.props.petAttack}
-                </p>
+                <p className="monsterStats__info__data">{Attack}</p>
               </Col>
               <Col sm="6" className="pt-1">
                 <p>DEFENSE:</p>
               </Col>
               <Col sm="6" className="pt-1">
-                <p className="monsterStats__info__data">
-                  {this.props.petDefense}
-                </p>
+                <p className="monsterStats__info__data">{Defense}</p>
               </Col>
             </Row>
           </Col>
@@ -49,21 +52,13 @@ class PetStats extends Component {
               <Col sm="12 pt-3">
                 <div className="monsterStats__statusBars">
                   <p>Happiness: </p>
-                  {this.props.petHappiness < 33 ? (
-                    <Progress
-                      striped
-                      value={this.props.petHappiness}
-                      color="danger"
-                    >
-                      <strong>{this.props.petHappiness} / 100</strong>
+                  {happiness < 33 ? (
+                    <Progress striped value={happiness} color="danger">
+                      <strong>{happiness} / 100</strong>
                     </Progress>
                   ) : (
-                    <Progress
-                      striped
-                      value={this.props.petHappiness}
-                      color="success"
-                    >
-                      <strong>{this.props.petHappiness} / 100</strong>
+                    <Progress striped value={happiness} color="success">
+                      <strong>{happiness} / 100</strong>
                     </Progress>
                   )}
                 </div>
@@ -71,21 +66,13 @@ class PetStats extends Component {
               <Col sm="12">
                 <div className="monsterStats__statusBars">
                   <p>Energy: </p>
-                  {this.props.petEnergy < 33 ? (
-                    <Progress
-                      striped
-                      value={this.props.petEnergy}
-                      color="danger"
-                    >
-                      <strong>{this.props.petEnergy} / 100</strong>
+                  {energy < 33 ? (
+                    <Progress striped value={energy} color="danger">
+                      <strong>{energy} / 100</strong>
                     </Progress>
                   ) : (
-                    <Progress
-                      striped
-                      value={this.props.petEnergy}
-                      color="success"
-                    >
-                      <strong>{this.props.petEnergy} / 100</strong>
+                    <Progress striped value={energy} color="success">
+                      <strong>{energy} / 100</strong>
                     </Progress>
                   )}
                 </div>
@@ -93,21 +80,13 @@ class PetStats extends Component {
               <Col sm="12">
                 <div className="monsterStats__statusBars">
                   <p>Hunger: </p>
-                  {this.props.petHunger < 60 ? (
-                    <Progress
-                      striped
-                      value={this.props.petHunger}
-                      color="success"
-                    >
-                      <strong>{this.props.petHunger} / 100</strong>
+                  {hunger < 60 ? (
+                    <Progress striped value={hunger} color="success">
+                      <strong>{hunger} / 100</strong>
                     </Progress>
                   ) : (
-                    <Progress
-                      striped
-                      value={this.props.petHunger}
-                      color="danger"
-                    >
-                      <strong>{this.props.petHunger} / 100</strong>
+                    <Progress striped value={hunger} color="danger">
+                      <strong>{hunger} / 100</strong>
                     </Progress>
                   )}
                 </div>

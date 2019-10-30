@@ -7,7 +7,19 @@ class InquiredPetInfo extends Component {
   state = {};
 
   render() {
-    var renderedAbilities = this.props.petInfo.abilities.map(ability => {
+    const {
+      petInfo: {
+        image,
+        name,
+        diet,
+        description,
+        _id,
+        main,
+        stats: { Hp, Attack, Defense },
+        abilities
+      }
+    } = this.props;
+    var renderedAbilities = abilities.map(ability => {
       return (
         <Col sm="2" key={ability.name}>
           <h3 className="text-center">{ability.name}</h3>
@@ -43,22 +55,20 @@ class InquiredPetInfo extends Component {
           }}
           className="mt-1"
         >
-          {this.props.petInfo.name}
+          {name}
         </h1>
         <Row className="mt-1">
           <Col md="5">
             <div className="selectedModalPetCard">
-              <img src={this.props.petInfo.image} />
+              <img src={image} />
             </div>
           </Col>
           <Col md="7 mt-5 ">
             <Row>
               <Col md="12">
+                <h3 className="selectedModalPetCard__petInfo">{description}</h3>
                 <h3 className="selectedModalPetCard__petInfo">
-                  {this.props.petInfo.description}
-                </h3>
-                <h3 className="selectedModalPetCard__petInfo">
-                  <strong>Diet:</strong> {this.props.petInfo.diet}
+                  <strong>Diet:</strong> {diet}
                 </h3>
                 <h3 className="selectedModalPetCard__petInfo">
                   <u>
@@ -66,11 +76,11 @@ class InquiredPetInfo extends Component {
                   </u>
                   <br />
                   <br />
-                  Health Points: {this.props.petInfo.stats.Hp}
+                  Health Points: {Hp}
                   <br />
-                  Attack Points: {this.props.petInfo.stats.Attack}
+                  Attack Points: {Attack}
                   <br />
-                  Defense Points: {this.props.petInfo.stats.Defense}
+                  Defense Points: {Defense}
                   <br />
                 </h3>
               </Col>
@@ -95,16 +105,14 @@ class InquiredPetInfo extends Component {
                 size="lg"
                 onClick={() => this.props.chosenPetHandler(this.props.petInfo)}
               >
-                Choose {this.props.petInfo.name}!
+                Choose {name}!
               </Button>
             ) : null}
-            {this.props.mainPetHandler && !this.props.petInfo.main ? (
+            {this.props.mainPetHandler && !main ? (
               <Button
                 color="success selectedModalPetCard__selectPetBtn"
                 size="lg"
-                onClick={() =>
-                  this.props.mainPetHandler(this.props.petInfo._id)
-                }
+                onClick={() => this.props.mainPetHandler(_id)}
               >
                 Make Main Pet!
               </Button>

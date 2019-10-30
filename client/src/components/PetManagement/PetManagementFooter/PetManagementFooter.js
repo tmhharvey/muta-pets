@@ -19,30 +19,28 @@ class DefaultBottomLayout extends Component {
   render() {
     this.toggle = this.toggle.bind(this);
 
+    const {
+      mainPetInfo: { name, image },
+      userName
+    } = this.props;
+
     return (
       <Row className="bottomLayout text-center">
         <Col sm="2 bottomLayout__monsterImage">
-          <h1>{this.props.petName}</h1>
-          <img src={this.props.petImage} />
+          <h1>{name}</h1>
+          <img src={image} />
         </Col>
         <Col sm="4">
-          <PetStats
-            petHp={this.props.petHp}
-            petDefense={this.props.petDefense}
-            petAttack={this.props.petAttack}
-            petImage={this.props.petImage}
-            petName={this.props.petName}
-            petHunger={this.props.petHunger}
-            petEnergy={this.props.petEnergy}
-            petHappiness={this.props.petHappiness}
-          ></PetStats>
+          <PetStats mainPetInfo={this.props.mainPetInfo}></PetStats>
         </Col>
         <Col sm="4 bottomLayout__abilityContent">
-          <PetAbilitiesInfo abilities={this.props.abilities}></PetAbilitiesInfo>
+          <PetAbilitiesInfo
+            abilities={this.props.mainPetInfo.abilities}
+          ></PetAbilitiesInfo>
         </Col>
         <Col sm="2">
           <div className="bottomLayout__charImage">
-            <h2>{this.props.userName}</h2>
+            <h2>{userName}</h2>
             <img src={defaultBoyAvatar}></img>
           </div>
         </Col>
