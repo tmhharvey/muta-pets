@@ -32,7 +32,7 @@ class Inventory extends Component {
       <Col sm="3">
         <div className="inventorySection">
           {" "}
-          <h2 className="inventorySection__title">Inventory</h2>
+          <h2 className="inventorySection__title">Inventory!!!!</h2>
           <hr />
           <Row>{renderInventory}</Row>
         </div>
